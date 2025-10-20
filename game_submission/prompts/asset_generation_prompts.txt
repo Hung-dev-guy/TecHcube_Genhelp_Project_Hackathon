@@ -1,0 +1,35 @@
+
+// Sprites (avatars & icons):
+- Prompt 1: "
+Generate 4 small cartoon-style PNG icons (transparent background, 128x128): 
+1) Player avatar 1 - friendly student with backpack (cartoon)
+2) Player avatar 2 - friendly student with headphones (cartoon)
+3) Quiz tile icon - question mark inside speech bubble
+4) Goal icon - trophy with heart
+
+Make them bright, simple, and suitable for school students. Provide filenames: player1.png, player2.png, quiz.png, goal.png. Also provide short alt text for each icon.
+
+"
+// Background / tiles:
+- Prompt 2: "
+Generate a simple repeating tile pattern PNG (64x64) for maze floor and a separate PNG for wall tile (64x64). Style: cartoonish, clean, friendly.
+Filenames: tile_floor.png, tile_wall.png
+"
+// Sound prompts:
+- Prompt 3: "
+Generate short, royalty-free sound effect descriptions and recommended filenames:
+- correct_answer.wav (0.4s, positive chime)
+- wrong_answer.wav (0.6s, soft buzzer)
+- goal.wav (1s, celebratory chime)
+Provide simple instructions for where to place them in /game_app/assets/sounds/.
+"
+- Prompt 4: "
+If you have an image generation tool, generate the 4 icons and floor/wall tiles.
+
+If not, create quick placeholders: colored divs or emoji images (fast).
+
+Place images into game_app/assets/images/. Add sound placeholders into game_app/assets/sounds/ (you can use short generated or royalty-free bleeps — or use base64 tiny sounds).
+
+Update index.html and CSS to use icons for quiz tiles and avatars.
+Deliverable: game with cartoonish placeholder assets and sound effects.
+"

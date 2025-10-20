@@ -1,0 +1,38 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Player 1: Friendly student with backpack -->
+  <defs>
+    <linearGradient id="skin1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD9A0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Backpack -->
+  <rect x="35" y="70" width="58" height="48" rx="8" fill="#4CAF50" stroke="#2E7D32" stroke-width="3"/>
+  <rect x="45" y="78" width="38" height="32" rx="4" fill="#66BB6A"/>
+  <circle cx="50" cy="90" r="4" fill="#2E7D32"/>
+  <circle cx="74" cy="90" r="4" fill="#2E7D32"/>
+  
+  <!-- Body -->
+  <ellipse cx="64" cy="85" rx="28" ry="35" fill="#4A90E2"/>
+  <ellipse cx="64" cy="85" rx="22" ry="28" fill="#5BA3F5"/>
+  
+  <!-- Head -->
+  <circle cx="64" cy="42" r="28" fill="url(#skin1)" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Hair -->
+  <path d="M 36 35 Q 40 20, 64 18 Q 88 20, 92 35 Q 92 42, 88 48 L 40 48 Q 36 42, 36 35" fill="#8B4513"/>
+  
+  <!-- Eyes -->
+  <circle cx="54" cy="42" r="5" fill="white"/>
+  <circle cx="74" cy="42" r="5" fill="white"/>
+  <circle cx="55" cy="43" r="3" fill="black"/>
+  <circle cx="75" cy="43" r="3" fill="black"/>
+  
+  <!-- Smile -->
+  <path d="M 50 52 Q 64 58, 78 52" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Backpack straps -->
+  <rect x="48" y="65" width="6" height="20" rx="3" fill="#2E7D32"/>
+  <rect x="74" y="65" width="6" height="20" rx="3" fill="#2E7D32"/>
+</svg>

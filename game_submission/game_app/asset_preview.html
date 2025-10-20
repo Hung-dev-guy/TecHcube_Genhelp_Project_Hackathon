@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Preview - Maze of Choices</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+
+        h2 {
+            color: #764ba2;
+            margin: 30px 0 20px 0;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .asset-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border: 3px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .asset-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .asset-item img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+
+        .asset-item h3 {
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .asset-item p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .tile-preview {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin: 10px;
+        }
+
+        .sound-section {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sound-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .sound-btn {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .sound-btn:hover {
+            background: #764ba2;
+            transform: scale(1.05);
+        }
+
+        .sound-btn:active {
+            transform: scale(0.95);
+        }
+
+        .info-box {
+            background: #e3f2fd;
+            border-left: 5px solid #2196F3;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #1976D2;
+            margin-bottom: 10px;
+        }
+
+        .info-box ul {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-box h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Asset Preview - Maze of Choices</h1>
+
+        <div class="info-box">
+            <h3>📋 Asset Summary</h3>
+            <ul>
+                <li><strong>Total Assets:</strong> 6 SVG images + 4 sound effects</li>
+                <li><strong>Format:</strong> SVG (images), Web Audio API (sounds)</li>
+                <li><strong>Total Size:</strong> Less than 15 KB</li>
+                <li><strong>Style:</strong> Cartoonish, colorful, student-friendly</li>
+            </ul>
+        </div>
+
+        <h2>👥 Character Avatars (128x128)</h2>
+        <div class="asset-grid">
+            <div class="asset-item">
+                <img src="assets/images/player1.svg" alt="Player 1">
+                <h3>Player 1</h3>
+                <p>Friendly student with backpack. Green backpack, blue shirt, welcoming appearance.</p>
+            </div>
+            <div class="asset-item">
+                <img src="assets/images/player2.svg" alt="Player 2">
+                <h3>Player 2</h3>
+                <p>Friendly student with headphones. Blue headphones, pink clothing, musical vibes.</p>
+            </div>
+        </div>
+
+        <h2>🎯 Game Tile Icons (128x128)</h2>
+        <div class="asset-grid">
+            <div class="asset-item">
+                <img src="assets/images/quiz.svg" alt="Quiz Icon">
+                <h3>Quiz Tile</h3>
+                <p>Question mark in speech bubble. Gold/orange gradient with sparkles.</p>
+            </div>
+            <div class="asset-item">
+                <img src="assets/images/goal.svg" alt="Goal Icon">
+                <h3>Goal Tile</h3>
+                <p>Trophy with heart. Shiny gold with pink heart, celebratory design.</p>
+            </div>
+        </div>
+
+        <h2>🧱 Maze Tiles (64x64)</h2>
+        <div class="asset-grid">
+            <div class="asset-item">
+                <img src="assets/images/tile_floor.svg" alt="Floor Tile">
+                <h3>Floor Tile</h3>
+                <p>Light green pattern. Walkable path with subtle decorative elements.</p>
+            </div>
+            <div class="asset-item">
+                <img src="assets/images/tile_wall.svg" alt="Wall Tile">
+                <h3>Wall Tile</h3>
+                <p>Gray brick pattern. Non-walkable obstacle with realistic texture.</p>
+            </div>
+        </div>
+
+        <h2>🔊 Sound Effects</h2>
+        <div class="sound-section">
+            <p style="text-align: center; margin-bottom: 20px;">
+                <strong>Click buttons below to test sound effects (Web Audio API)</strong>
+            </p>
+            <div class="sound-buttons">
+                <button class="sound-btn" onclick="playCorrectSound()">✓ Correct Answer</button>
+                <button class="sound-btn" onclick="playWrongSound()">✗ Wrong Answer</button>
+                <button class="sound-btn" onclick="playGoalSound()">🏆 Goal Reached</button>
+                <button class="sound-btn" onclick="playBeep(400, 0.05, 'sine', 0.1)">👟 Movement</button>
+            </div>
+        </div>
+
+        <h2>📊 Asset Statistics</h2>
+        <div class="stats">
+            <div class="stat-box">
+                <h3>6</h3>
+                <p>SVG Images</p>
+            </div>
+            <div class="stat-box">
+                <h3>4</h3>
+                <p>Sound Effects</p>
+            </div>
+            <div class="stat-box">
+                <h3>&lt;15 KB</h3>
+                <p>Total Size</p>
+            </div>
+            <div class="stat-box">
+                <h3>100%</h3>
+                <p>Browser Compatible</p>
+            </div>
+        </div>
+
+        <div class="info-box">
+            <h3>✅ Implementation Complete</h3>
+            <p>All assets have been successfully integrated into the game. The game now features:</p>
+            <ul>
+                <li>Custom player avatars with unique designs</li>
+                <li>Colorful quiz and goal tile icons</li>
+                <li>Textured floor and wall tiles for the maze</li>
+                <li>Dynamic sound effects for game actions</li>
+                <li>Fully responsive and scalable graphics</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sound effect functions (Web Audio API)
+        function playBeep(frequency, duration, type = 'sine', volume = 0.3) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.value = frequency;
+                oscillator.type = type;
+                gainNode.gain.setValueAtTime(volume, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + duration);
+            } catch (e) {
+                console.log('Audio not supported');
+            }
+        }
+
+        function playCorrectSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [523.25, 659.25, 783.99]; // C5, E5, G5
+
+                notes.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.frequency.value = freq;
+                    oscillator.type = 'sine';
+
+                    const startTime = audioContext.currentTime + (index * 0.1);
+                    gainNode.gain.setValueAtTime(0.2, startTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.2);
+
+                    oscillator.start(startTime);
+                    oscillator.stop(startTime + 0.2);
+                });
+            } catch (e) {
+                alert('Audio not supported in your browser');
+            }
+        }
+
+        function playWrongSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+
+                oscillator.frequency.setValueAtTime(300, audioContext.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(150, audioContext.currentTime + 0.3);
+                oscillator.type = 'square';
+
+                gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.3);
+            } catch (e) {
+                alert('Audio not supported in your browser');
+            }
+        }
+
+        function playGoalSound() {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+
+                notes.forEach((freq, index) => {
+                    const oscillator = audioContext.createOscillator();
+                    const gainNode = audioContext.createGain();
+
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioContext.destination);
+
+                    oscillator.frequency.value = freq;
+                    oscillator.type = 'triangle';
+
+                    const startTime = audioContext.currentTime + (index * 0.08);
+                    gainNode.gain.setValueAtTime(0.25, startTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+
+                    oscillator.start(startTime);
+                    oscillator.stop(startTime + 0.3);
+                });
+
+                const finalOscillator = audioContext.createOscillator();
+                const finalGain = audioContext.createGain();
+                finalOscillator.connect(finalGain);
+                finalGain.connect(audioContext.destination);
+                finalOscillator.frequency.value = 1318.51; // E6
+                finalOscillator.type = 'sine';
+                const finalTime = audioContext.currentTime + 0.32;
+                finalGain.gain.setValueAtTime(0.3, finalTime);
+                finalGain.gain.exponentialRampToValueAtTime(0.01, finalTime + 0.5);
+                finalOscillator.start(finalTime);
+                finalOscillator.stop(finalTime + 0.5);
+            } catch (e) {
+                alert('Audio not supported in your browser');
+            }
+        }
+    </script>
+</body>
+</html>

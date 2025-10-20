@@ -1,0 +1,5 @@
+- Prompt 1: "I want a concise game concept for a web-based 2D maze race called "Maze of Choices". It must be educational-focused for Vietnamese students about sex education and mental wellbeing. Game must be playable in a browser with HTML/CSS/JS, have menu/play/result screens, multiple online players, quiz tiles that pause the game and show multiple-choice questions about sex education. On correct answer player moves forward extra tile; on wrong answer player moves back. Keep the concept short (5-8 bullet points) and indicate why this helps awareness."
+- Prompt 2: "Generate 12 age-appropriate multiple-choice questions (Vietnamese/English) about sex education and mental wellbeing for students. Each question should have 4 answer choices labeled A-D and indicate the correct answer. Keep language neutral, factual and suitable for high-school students. Include short explanation (1-2 sentences) for the correct answer."
+
+
+

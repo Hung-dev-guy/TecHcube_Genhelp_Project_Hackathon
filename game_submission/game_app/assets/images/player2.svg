@@ -1,0 +1,40 @@
+<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Player 2: Friendly student with headphones -->
+  <defs>
+    <linearGradient id="skin2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD9A0;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Body -->
+  <ellipse cx="64" cy="90" rx="28" ry="35" fill="#E91E63"/>
+  <ellipse cx="64" cy="90" rx="22" ry="28" fill="#F06292"/>
+  
+  <!-- Head -->
+  <circle cx="64" cy="48" r="28" fill="url(#skin2)" stroke="#D2691E" stroke-width="2"/>
+  
+  <!-- Hair -->
+  <ellipse cx="64" cy="30" rx="30" ry="20" fill="#4A148C"/>
+  <path d="M 34 42 Q 34 20, 64 16 Q 94 20, 94 42" fill="#4A148C"/>
+  
+  <!-- Headphones -->
+  <circle cx="36" cy="48" r="12" fill="#2196F3" stroke="#0D47A1" stroke-width="3"/>
+  <circle cx="92" cy="48" r="12" fill="#2196F3" stroke="#0D47A1" stroke-width="3"/>
+  <circle cx="36" cy="48" r="7" fill="#1976D2"/>
+  <circle cx="92" cy="48" r="7" fill="#1976D2"/>
+  <path d="M 36 36 Q 64 28, 92 36" stroke="#0D47A1" stroke-width="4" fill="none"/>
+  
+  <!-- Eyes -->
+  <circle cx="54" cy="48" r="5" fill="white"/>
+  <circle cx="74" cy="48" r="5" fill="white"/>
+  <circle cx="55" cy="49" r="3" fill="black"/>
+  <circle cx="75" cy="49" r="3" fill="black"/>
+  
+  <!-- Smile -->
+  <path d="M 50 58 Q 64 64, 78 58" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Musical notes -->
+  <text x="8" y="28" font-size="16" fill="#FF6B6B">♪</text>
+  <text x="108" y="32" font-size="14" fill="#FF6B6B">♫</text>
+</svg>

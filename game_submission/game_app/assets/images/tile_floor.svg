@@ -1,0 +1,21 @@
+<svg width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Floor tile: Light, friendly pattern -->
+  <defs>
+    <pattern id="floorPattern" x="0" y="0" width="32" height="32" patternUnits="userSpaceOnUse">
+      <rect width="32" height="32" fill="#E8F5E9"/>
+      <circle cx="16" cy="16" r="2" fill="#C8E6C9" opacity="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Base -->
+  <rect width="64" height="64" fill="url(#floorPattern)"/>
+  
+  <!-- Border -->
+  <rect width="64" height="64" fill="none" stroke="#A5D6A7" stroke-width="2"/>
+  
+  <!-- Corner dots -->
+  <circle cx="8" cy="8" r="2" fill="#81C784" opacity="0.6"/>
+  <circle cx="56" cy="8" r="2" fill="#81C784" opacity="0.6"/>
+  <circle cx="8" cy="56" r="2" fill="#81C784" opacity="0.6"/>
+  <circle cx="56" cy="56" r="2" fill="#81C784" opacity="0.6"/>
+</svg>

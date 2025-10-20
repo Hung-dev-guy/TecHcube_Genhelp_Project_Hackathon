@@ -1,0 +1,5 @@
+# YouTube Demo Video Link
+
+[Paste your YouTube URL here - maximum 7 minutes with voice-over]
+
+Example: https://www.youtube.com/watch?v=XXXXXXXXXXXXX

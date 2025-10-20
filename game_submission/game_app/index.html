@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze of Choices</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Menu Screen -->
+        <div id="menu-screen" class="screen active">
+            <h1 class="game-title">Maze of Choices</h1>
+            <div class="menu-buttons">
+                <button id="start-button" class="menu-btn">Start Game</button>
+                <button id="instructions-button" class="menu-btn">Instructions</button>
+                <button id="leaderboard-button" class="menu-btn">Leaderboard</button>
+            </div>
+        </div>
+
+        <!-- Player Name Input Screen -->
+        <div id="name-input-screen" class="screen">
+            <h2>Enter Your Name</h2>
+            <div class="name-input-container">
+                <input type="text" id="player-name-input" placeholder="Your Name" maxlength="20" />
+                <button id="start-game-button" class="menu-btn">Start</button>
+                <button id="cancel-name-button" class="menu-btn secondary">Cancel</button>
+            </div>
+        </div>
+
+        <!-- Leaderboard Screen -->
+        <div id="leaderboard-screen" class="screen">
+            <h2>Leaderboard</h2>
+            <div class="leaderboard-container">
+                <table id="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                            <th>Time</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <tr>
+                            <td colspan="5" class="no-data">No scores yet. Be the first to play!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="menu-buttons">
+                <button id="clear-leaderboard-button" class="menu-btn secondary">Clear Leaderboard</button>
+                <button id="back-to-menu-3" class="menu-btn">Back to Menu</button>
+            </div>
+        </div>
+
+        <!-- Instructions Screen -->
+        <div id="instructions-screen" class="screen">
+            <h2>How to Play</h2>
+            <div class="instructions-content">
+                <p><strong>Controls:</strong> Use WASD or Arrow keys to move</p>
+                <p>Step on quiz tiles (marked with ?) to answer questions</p>
+                <p>Correct answers move you forward, wrong answers move you back</p>
+                <p>Reach the goal (★) as fast as possible!</p>
+                <p>Your score is based on correct answers and completion time</p>
+            </div>
+            <button id="back-to-menu" class="menu-btn">Back to Menu</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="player-info">
+                    <div class="player-score">
+                        <span class="player-label player1-color" id="current-player-name">Player</span>
+                        <span id="player-score">Score: 0</span>
+                    </div>
+                </div>
+                <div id="timer" class="timer">Time: 0:00</div>
+            </div>
+
+            <div id="maze-container"></div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-screen" class="screen">
+            <h1 id="winner-text">Congratulations!</h1>
+            <div class="result-stats">
+                <div class="stat-row">
+                    <span>Player:</span>
+                    <span id="result-player-name">Anonymous</span>
+                </div>
+                <div class="stat-row">
+                    <span>Correct Answers:</span>
+                    <span id="final-score">0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Time:</span>
+                    <span id="final-time">0:00</span>
+                </div>
+                <div class="stat-row highlight">
+                    <span>Final Score:</span>
+                    <span id="total-score">0</span>
+                </div>
+            </div>
+            <div id="new-record-badge" class="new-record-badge">New Record!</div>
+            <div class="menu-buttons">
+                <button id="view-leaderboard-button" class="menu-btn">View Leaderboard</button>
+                <button id="play-again-button" class="menu-btn">Play Again</button>
+                <button id="back-to-menu-2" class="menu-btn">Main Menu</button>
+            </div>
+        </div>
+
+        <!-- Quiz Modal -->
+        <div id="quiz-modal" class="modal">
+            <div class="modal-content">
+                <h3>Quiz Time!</h3>
+                <p id="question-text">Sample Question?</p>
+                <div id="answers-container"></div>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration and Services -->
+    <script src="config.js"></script>
+    <script src="gemini-quiz.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

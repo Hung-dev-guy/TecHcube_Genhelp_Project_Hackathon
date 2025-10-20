@@ -1,0 +1,23 @@
+- Prompt 1: "
+Generate a full, minimal web game (index.html, style.css, script.js) for "Maze of Choices". Requirements:
+- No backend; all front-end only.
+- Menu screen with title, "Start", "Instructions".
+- Play screen: 10x7 tile grid maze drawn as HTML elements or canvas.
+- Two players: Player1 uses WASD to move; Player2 uses arrow keys.
+- Certain tiles are quiz tiles (marked with quiz icon). When a player steps on a quiz tile, pause movement and show a modal with one multiple-choice question. Provide a sample set of 8 sex-education questions (age-appropriate), each with 4 answers and one correct answer.
+- Correct answer: move player forward one tile (if possible) and play correct sound. Wrong: move back one tile and play wrong sound.
+- Show a timer and simple score: number of correct answers per player.
+- End when a player reaches the goal tile; show result screen with winner and stats.
+- Use modular functions with comments. Use plain JS, no build tools.
+- Make UI cartoonish, responsive to desktop.
+Produce code for index.html, style.css, and script.js.
+"
+- Prompt 2: "
+Update: Use LLMs (gemini api key) to generate quizzes about sex education and mental health instead of using given fixed quizzes. Requirements:
+-  Need a system prompt to Include an age-appropriate filter
+- Set system prompts like:
+“Generate educational, age-appropriate, respectful questions for teenagers.”
+- Review LLM outputs or moderate before display if necessary.
+"
+
+
