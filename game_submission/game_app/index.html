@@ -189,69 +189,94 @@
             </div>
         </div>
 
-        <!-- Wheel of Fortune Modal -->
+        <!-- Fortune Event Modal (Replaced Wheel) -->
         <div id="wheel-modal" class="modal">
-            <div class="modal-content wheel-modal-content">
-                <h3>🎰 Wheel of Destiny!</h3>
-                <p class="wheel-description">Meet your luck! Spin to see what destiny brings you!</p>
-                <div class="wheel-container">
-                    <div class="wheel-pointer">👇</div>
-                    <div class="wheel-outer-ring">
-                        <div id="fortune-wheel" class="fortune-wheel">
-                            <div class="wheel-center">🎯</div>
-                            <div class="wheel-segment seg-1">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">😊</span>
-                                    +5
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-2">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">🤔</span>
-                                    0
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-3">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">😢</span>
-                                    -3
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-4">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">🎉</span>
-                                    +7
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-5">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">😰</span>
-                                    -5
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-6">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">⭐</span>
-                                    +10
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-7">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">🎊</span>
-                                    +3
-                                </span>
-                            </div>
-                            <div class="wheel-segment seg-8">
-                                <span class="segment-text">
-                                    <span class="segment-emoji">✨</span>
-                                    +5
-                                </span>
-                            </div>
+            <div class="modal-content fortune-modal-content">
+                <h3>🎰 Try Your Luck!</h3>
+                <p class="fortune-description">Choose a mystery gift box to discover your reward!</p>
+                <div class="fortune-boxes-container">
+                    <div class="fortune-box" data-value="10" data-emoji="⭐">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">⭐</div>
+                            <div class="box-value">+10</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="5" data-emoji="😊">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">😊</div>
+                            <div class="box-value">+5</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="0" data-emoji="🤔">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">🤔</div>
+                            <div class="box-value">0</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="-3" data-emoji="😢">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">😢</div>
+                            <div class="box-value">-3</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="7" data-emoji="🎉">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">🎉</div>
+                            <div class="box-value">+7</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="-5" data-emoji="😰">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">😰</div>
+                            <div class="box-value">-5</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="3" data-emoji="🎊">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">🎊</div>
+                            <div class="box-value">+3</div>
+                        </div>
+                    </div>
+                    <div class="fortune-box" data-value="5" data-emoji="✨">
+                        <div class="box-front">
+                            <div class="box-emoji">🎁</div>
+                            <div class="box-question">?</div>
+                        </div>
+                        <div class="box-back">
+                            <div class="box-emoji-result">✨</div>
+                            <div class="box-value">+5</div>
                         </div>
                     </div>
                 </div>
-                <button id="spin-wheel-button" class="menu-btn spin-btn" onclick="spinWheel()">🎲 SPIN NOW!</button>
-                <div id="wheel-result" class="wheel-result">Spin the wheel to meet your destiny!</div>
+                <div id="fortune-result" class="fortune-result">Pick a gift box to begin!</div>
             </div>
         </div>
 

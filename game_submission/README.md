@@ -1,7 +1,7 @@
-# Maze of Choices - Sexual Health Education Game
+# GenHelp - Sexual Health Education Game
 
 ## Overview
-"Maze of Choices" is an interactive, educational game designed to teach teenagers about sexual health, relationships, consent, and mental wellbeing through engaging quiz-based gameplay. Players navigate a maze, answer questions, and learn important life skills in a fun, judgment-free environment.
+"GenHelp" is an interactive, educational game designed to teach teenagers about sexual health, relationships, consent, and mental wellbeing through engaging quiz-based gameplay. Players navigate a maze, answer questions, test their luck with the Wheel of Fortune, and learn important life skills in a fun, judgment-free environment.
 
 ## 🎮 How to Run the Game
 
@@ -69,19 +69,24 @@ Sexual health education for teenagers (ages 13-18) focused on:
 ### Gameplay Mechanics
 1. **Maze Navigation**: Automatic movement along a linear path through a 15x8 grid maze
 2. **Dice Rolling**: Click "Roll Dice" to get a random number (1-6) and move that many steps
-3. **Quiz Tiles**: Step on yellow glowing tiles to answer questions
-4. **Reward/Penalty System**: 
-   - Correct answers → +10 points
-   - Wrong answers → -5 points
-5. **Goal**: Reach the trophy tile as fast as possible
-6. **Scoring**: Based on correct answers and completion time
-7. **Leaderboard**: Track and compare performance
-8. **In-Game Navigation**: Access menu or leaderboard anytime with navigation buttons
+3. **Quiz Tiles**: Step on yellow glowing tiles to answer sexual health education questions
+4. **Event Tiles**: Step on purple glowing tiles to spin the Wheel of Fortune for bonus/penalty points
+5. **Reward/Penalty System**: 
+   - Correct quiz answers → +10 points
+   - Wrong quiz answers → -5 points
+   - Wheel of Fortune → -15 to +25 points (or SAFE)
+   - **Score never goes below 0**
+6. **Goal**: Reach the trophy tile as fast as possible
+7. **Scoring**: Based on correct answers, wheel outcomes, and completion time
+8. **Leaderboard**: Track and compare performance
+9. **In-Game Navigation**: Access menu or leaderboard anytime with navigation buttons
 
 ### Key Features
 - 12 carefully crafted educational questions
-- 🤖 **AI-Powered Quiz Generation** using Gemini API (NEW!)
+- 🤖 **AI-Powered Quiz Generation** using Gemini API
 - 🔒 **Age-appropriate content moderation** for AI questions
+- 🎡 **Wheel of Fortune** - Spin for bonus/penalty points with beautiful animations
+- 🛡️ **Score Protection** - Score never goes below 0
 - Real-time timer and scoring system
 - Persistent leaderboard (localStorage or MongoDB)
 - Colorful, cartoonish graphics suitable for teens
@@ -138,8 +143,10 @@ Sexual health education for teenagers (ages 13-18) focused on:
 - ✅ Dice-based movement system with auto-pathfinding
 - ✅ Linear path maze (no branching decisions)
 - ✅ 24 curated sexual health education quiz questions with explanations
-- ✅ 🤖 AI-generated dynamic quiz questions (NEW!)
-- ✅ 🔒 Age-appropriate content filtering (NEW!)
+- ✅ 🤖 AI-generated dynamic quiz questions
+- ✅ 🔒 Age-appropriate content filtering
+- ✅ 🎡 Wheel of Fortune event tiles with 8 possible outcomes
+- ✅ 🛡️ Score protection - never goes below 0
 - ✅ Question randomization for replay value
 - ✅ Real-time timer and score tracking
 - ✅ In-game navigation buttons (menu/leaderboard access)
@@ -149,7 +156,9 @@ Sexual health education for teenagers (ages 13-18) focused on:
 - ✅ Custom kawaii-style player characters (cute bunny design)
 - ✅ Modern soft UI with pastel gradients
 - ✅ Glassmorphism effects and glowing animations
-- ✅ Colorful quiz and goal icons
+- ✅ Colorful quiz tiles (yellow) and event tiles (purple)
+- ✅ Beautiful Wheel of Fortune with gradient segments
+- ✅ Goal icon with shine animation
 - ✅ Textured floor and wall tiles
 - ✅ Smooth dice rolling animations
 - ✅ Responsive design with beautiful transitions
@@ -160,12 +169,15 @@ Sexual health education for teenagers (ages 13-18) focused on:
 - ✅ Wrong answer buzz (descending)
 - ✅ Victory celebration sound
 - ✅ Movement feedback beeps
+- ✅ Wheel spinning sound effect
 
 ### UI/UX
 - ✅ Multiple screens (menu, game, results, leaderboard)
 - ✅ Player name customization
+- ✅ Character selection (male/female)
 - ✅ Instructions screen with gameplay guide
 - ✅ Dice rolling interface with visual feedback
+- ✅ Wheel of Fortune modal with spinning animation
 - ✅ In-game navigation buttons (🏆 leaderboard, 🏠 menu)
 - ✅ Results summary with detailed stats
 - ✅ Top 20 leaderboard display
@@ -215,11 +227,11 @@ game_submission/
 │           └── quiz.py         # Quiz endpoints (updated with AI)
 ├── game_app/                    # Frontend
 │   ├── index.html              # Main game file
-│   ├── script.js               # Game logic (700+ lines)
-│   ├── api-integration.js      # API client (NEW!)
+│   ├── script.js               # Game logic (850+ lines)
+│   ├── api-integration.js      # API client
 │   ├── gemini-quiz.js          # Quiz questions (24 Vietnamese questions)
 │   ├── config.js               # Game configuration
-│   ├── style.css               # Modern UI styling (900+ lines)
+│   ├── style.css               # Modern UI styling (1100+ lines)
 │   ├── asset_preview.html      # Asset testing page
 │   └── assets/
 │       ├── README.md           # Asset documentation
@@ -258,10 +270,11 @@ game_submission/
 - High contrast for accessibility
 
 ### Sound Effects
-- 4 dynamic sounds using Web Audio API
+- 5 dynamic sounds using Web Audio API
 - No external files needed
 - Instant loading, zero latency
 - Cross-browser compatible
+- Includes: correct/wrong answer, movement, victory, and wheel spinning sounds
 
 ## 🧪 Testing
 
@@ -276,24 +289,29 @@ game_submission/
 - ✅ Dice rolling and auto-movement
 - ✅ Linear path navigation
 - ✅ Quiz system with feedback and randomization
+- ✅ Wheel of Fortune with spinning animation
+- ✅ Score protection (never below 0)
 - ✅ Scoring and timer accuracy
 - ✅ Leaderboard persistence (localStorage)
 - ✅ In-game navigation buttons
-- ✅ Sound effects
+- ✅ Sound effects (including wheel spin)
 - ✅ Responsive design (desktop + mobile)
 - ✅ Modern UI animations and transitions
 
 ## 📊 Game Statistics
 
-- **Lines of Code**: ~2,000+ (HTML, CSS, JS, Python)
+- **Game Name**: GenHelp
+- **Lines of Code**: ~2,200+ (HTML, CSS, JS, Python)
 - **Curated Questions**: 24 comprehensive sexual health questions (Vietnamese)
-- **AI-Generated Questions**: Unlimited via Gemini API (NEW!)
+- **AI-Generated Questions**: Unlimited via Gemini API
 - **Maze Size**: 15×8 grid (120 tiles)
 - **Path Length**: ~41 tiles in linear path
-- **Quiz Tiles**: 9 positioned along the path
+- **Quiz Tiles**: 5 positioned along the path
+- **Event Tiles**: 6 Wheel of Fortune tiles
+- **Wheel Outcomes**: 8 possible results (-15 to +25 points, plus SAFE)
 - **Load Time**: < 1 second (all assets < 20 KB)
 - **Platforms**: Web (desktop + mobile)
-- **Backend Endpoints**: 12+ REST API endpoints (NEW!)
+- **Backend Endpoints**: 12+ REST API endpoints
 - **UI Design**: Modern soft UI with pastel gradients and glassmorphism
 
 ## 🏆 Educational Impact
@@ -321,16 +339,17 @@ Students will learn about:
 ### Potential Additions
 1. ~~**More Questions**: Expand to 50+ questions~~ ✅ **DONE** (AI generation)
 2. ~~**Dynamic Content**: AI-generated questions~~ ✅ **DONE** (Gemini API)
-3. **Difficulty Levels**: Easy, Medium, Hard modes
-4. **Multiplayer Mode**: Competitive or cooperative play
-5. **Achievement System**: Badges for milestones
-6. **Progress Tracking**: Save player progress (partially done with backend)
-7. **Localization**: Multiple languages
-8. **Professional Assets**: Commission artwork
-9. **Background Music**: Ambient soundtracks
-10. **Mobile App**: Native iOS/Android versions
-11. **Analytics**: Track learning outcomes
-12. **Admin Dashboard**: Manage questions and users
+3. ~~**Game Events**: Random events for excitement~~ ✅ **DONE** (Wheel of Fortune)
+4. **Difficulty Levels**: Easy, Medium, Hard modes
+5. **Multiplayer Mode**: Competitive or cooperative play
+6. **Achievement System**: Badges for milestones
+7. **Progress Tracking**: Save player progress (partially done with backend)
+8. **Localization**: Multiple languages
+9. **Professional Assets**: Commission artwork
+10. **Background Music**: Ambient soundtracks
+11. **Mobile App**: Native iOS/Android versions
+12. **Analytics**: Track learning outcomes
+13. **Admin Dashboard**: Manage questions and users
 
 ## 🙏 Acknowledgments
 
@@ -346,7 +365,13 @@ Created for RMIT Hackathon 2025 - Educational purposes
 ---
 
 **🎮 Ready to Play!**  
-Open `game_app/index.html` and start your educational journey through the Maze of Choices!
+Open `game_app/index.html` and start your educational journey through GenHelp!
+
+**🎡 Features:**
+- Educational quiz questions about sexual health
+- Wheel of Fortune for exciting gameplay
+- Beautiful modern UI with smooth animations
+- Score protection - never goes below 0!
 
 **📱 Asset Preview:**  
 Open `game_app/asset_preview.html` to view all visual assets and test sound effects!
