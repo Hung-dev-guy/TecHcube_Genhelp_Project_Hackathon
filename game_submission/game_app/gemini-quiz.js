@@ -491,18 +491,6 @@ Generate ${count} questions now:`;
             },
             {
                 id: 17,
-                question: "Is masturbation harmful?",
-                answers: [
-                    "No, it's natural and normal",
-                    "Very dangerous",
-                    "Causes mental illness",
-                    "Stunts growth"
-                ],
-                correct: 0,
-                explanation: "Masturbation is natural, safe, and not harmful. It's a way to explore your own body. Claims about harmful effects are myths without scientific basis."
-            },
-            {
-                id: 18,
                 question: "What does the HPV vaccine do?",
                 answers: [
                     "Prevents cervical cancer and HPV-related diseases",
@@ -514,19 +502,7 @@ Generate ${count} questions now:`;
                 explanation: "The HPV vaccine prevents HPV virus - the main cause of cervical cancer, anal cancer, and genital warts. Most effective when given before becoming sexually active."
             },
             {
-                id: 19,
-                question: "What does safe sex include?",
-                answers: [
-                    "Using condoms, limiting partners, regular testing",
-                    "No protection needed",
-                    "Just trusting each other",
-                    "Washing after sex is enough"
-                ],
-                correct: 0,
-                explanation: "Safe sex includes: proper condom use, limiting partners, regular STI testing, open communication with partners. Trust is important but doesn't replace protection methods."
-            },
-            {
-                id: 20,
+                id: 18,
                 question: "What is family planning?",
                 answers: [
                     "Planning when and how many children to have",
@@ -538,7 +514,7 @@ Generate ${count} questions now:`;
                 explanation: "Family planning is the right to decide the number, spacing, and timing of children based on your circumstances. It helps ensure mother and child health and family stability."
             },
             {
-                id: 21,
+                id: 19,
                 question: "Who can be a victim of sexual violence?",
                 answers: [
                     "Anyone, regardless of gender, age, or clothing",
@@ -550,7 +526,7 @@ Generate ${count} questions now:`;
                 explanation: "Sexual violence can happen to anyone. The fault ALWAYS lies with the perpetrator, NEVER the victim. Clothing and behavior are never excuses for violence."
             },
             {
-                id: 22,
+                id: 20,
                 question: "Do female condoms exist?",
                 answers: [
                     "Yes, and they're as effective as male condoms",
