@@ -1,0 +1,91 @@
+# Project Report: Genhelp - An Educational Game
+
+**Project:** Maze of Choices  
+**Team:** [<TecHCube\>]  
+**Date:** October 20, 2025
+
+---
+
+## 1. Introduction of the Game
+
+"Genhelp" is an interactive, web-based educational game designed to provide teenagers (ages 13-18) with essential knowledge about sexual health, mental wellbeing, and healthy relationships. The game combines engaging maze-based puzzle gameplay with a dynamic quiz system. Players navigate a character through a maze, encountering quiz tiles that present them with multiple-choice questions.
+
+The core objective is to make learning about sensitive and critical life topics accessible, non-judgmental, and engaging. By gamifying the educational experience, "Genhelp" aims to break down the barriers of stigma and discomfort, empowering young people to learn at their own pace in a safe, private environment. The game features a scoring system, a timer, and a leaderboard to encourage replayability and mastery of the educational content.
+
+A key innovation in this project is the integration of a dynamic AI-powered quiz generation system using the Google Gemini API, allowing for a virtually endless supply of fresh, relevant, and age-appropriate questions.
+
+---
+
+## 2. Game Theme & Topic Justification
+
+The theme of "Genhelp" centers on sexual health, mental wellbeing, and consent. This topic was deliberately chosen for several critical reasons:
+
+*   **Critical Knowledge Gap:** Teenagers are at a developmental stage where they begin to make significant decisions about their bodies, relationships, and health. However, comprehensive, accessible, and non-judgmental educational resources are often lacking or inconsistent.
+*   **Stigma and Discomfort:** Discussing topics like contraception, STIs (Sexually Transmitted Infections), and consent can be uncomfortable for teens, parents, and even some educators. A game provides a private, low-pressure medium to explore these subjects without fear of judgment.
+*   **Empowerment Through Knowledge:** Accurate information is a tool for empowerment. By understanding topics like body autonomy, consent, and mental health support systems, teenagers are better equipped to make safe, informed decisions, set healthy boundaries, and seek help when needed.
+*   **Holistic Approach:** The game intentionally links sexual health with mental wellbeing. This reflects the reality that emotional health, stress, and self-esteem are deeply intertwined with relationship dynamics and decisions about sexual health.
+*   **Preventative Education:** Providing this knowledge early can have a significant preventative impact, reducing rates of unintended pregnancies and STIs, and promoting a culture of consent and mutual respect from a young age.
+
+---
+
+## 3. Potential Impact
+
+The "Genhelp" game has the potential to make a significant positive impact on its target audience and the broader community:
+
+*   **Increased Health Literacy:** By presenting factual information in an engaging format, the game can significantly improve teenagers' understanding of critical health topics, leading to healthier behaviors and outcomes.
+*   **Normalization and Reduced Stigma:** The game normalizes conversations about sexual and mental health, helping to reduce the stigma that often prevents young people from asking questions or seeking support.
+*   **Promotion of Consent Culture:** With consent as a core topic, the game actively contributes to building a culture of respect and clear communication, which is fundamental to preventing sexual assault and fostering healthy relationships.
+*   **Scalable and Accessible Education:** As a web-based application, the game is highly accessible to anyone with an internet connection and a browser. The AI-powered quiz system ensures the content remains fresh and can be scaled indefinitely without manual content creation.
+*   **A Tool for Educators and Parents:** The game can serve as a valuable supplementary tool for health educators and a conversation starter for parents, providing a structured and engaging way to introduce and discuss sensitive topics.
+*   **Empowerment and Agency:** By learning about their rights, their bodies, and the resources available to them, players gain a sense of agency and are more likely to advocate for their own health and wellbeing.
+
+---
+
+## 4. Technology Stack
+
+The project leverages a modern, lightweight, and powerful technology stack focused on frontend capabilities and direct API integration.
+
+### **Frontend Technologies**
+*   **HTML5:** Provides the semantic structure for all game screens and UI components.
+*   **CSS3:** Used for all styling, including layout with CSS Grid for the maze, animations for player movement and UI transitions, and responsive design for various screen sizes.
+*   **JavaScript (ES6+):** The core of the project, handling all game logic, state management, player movement, quiz mechanics, scoring, and DOM manipulation.
+
+### **AI Tools & Services**
+*   **Google Gemini API:** The cornerstone of the dynamic content system. Used to generate an endless supply of educational, age-appropriate quiz questions on the fly. This includes a sophisticated system prompt and frontend moderation to ensure content safety.
+*   **GitHub Copilot:** Utilized throughout the development process for code generation, autocompletion, debugging, and generating documentation, significantly accelerating development time.
+
+### **Web Libraries & APIs**
+*   **Web Audio API:** Used to generate all in-game sound effects (movement, correct/wrong answers, victory chime) dynamically in the browser without requiring any audio files, keeping the application lightweight.
+*   **Fetch API:** Used to communicate directly with the Google Gemini API from the frontend to retrieve AI-generated quizzes.
+*   **localStorage:** Provides client-side storage for the leaderboard, allowing for persistence between game sessions in the absence of a backend.
+
+---
+
+## 5. Overview of Game Mechanics
+
+The gameplay loop is designed to be simple, intuitive, and educationally effective.
+
+1.  **Start & Setup:** The player enters their name on the menu screen to personalize the experience.
+2.  **Maze Navigation:** The player is placed at the start of a 10x7 grid-based maze. They use the WASD or Arrow keys to navigate their character.
+3.  **Quiz Encounters:** The maze is populated with "quiz tiles." When the player moves onto one of these tiles, the game pauses, and a modal window appears displaying a multiple-choice question.
+4.  **Answering Questions:** The player selects one of the four possible answers.
+    *   **Correct Answer:** The player is rewarded with a positive sound effect, an explanation of the correct answer, and is moved forward one space in a favorable direction. Their score increases.
+    *   **Incorrect Answer:** The player is shown a "wrong answer" notification, a corrective explanation, and is moved back one space, adding a layer of challenge.
+5.  **Scoring and Timer:** A timer starts at the beginning of the game. The final score is calculated based on the number of correct answers and the time taken to complete the maze, rewarding both accuracy and speed.
+6.  **Goal:** The objective is to navigate to the "goal tile" at the end of the maze.
+7.  **Game End & Leaderboard:** Upon reaching the goal, the game ends. The player's final score is displayed, and if it's high enough, it is saved to the local leaderboard.
+
+---
+
+## 6. Reflection
+
+The development of "Genhelp" was a journey of both technical implementation and thoughtful content design.
+
+The biggest challenge and most significant achievement was the implementation of the AI-powered quiz generation. Ensuring the content generated by Gemini was safe, age-appropriate, medically accurate, and non-judgmental was paramount. This was addressed by creating a robust, multi-layered safety system:
+1.  A highly detailed system prompt that acts as a strong guard rail for the AI.
+2.  Frontend content moderation that filters the AI's output for inappropriate keywords and ensures it contains educational value before it is displayed to the user.
+3.  A **fallback system** that seamlessly reverts to a set of high-quality, curated questions if the AI fails to generate suitable content for any reason.
+
+This hybrid approach ensures a reliable and safe user experience while still harnessing the power of generative AI for dynamic content.
+
+Looking forward, the frontend-centric architecture still allows for future expansion. The `api-integration.js` file, though currently unused, could be reactivated to connect to a backend if features like user accounts or global leaderboards become a priority. The project successfully meets its goal of creating an engaging, safe, and impactful educational tool for teenagers.

@@ -286,139 +286,115 @@ Generate ${count} questions now:`;
     getFallbackQuestions(count = 12) {
         const curatedQuestions = [
             {
-                id: 0,
-                question: "What is the best way to prevent pregnancy?",
-                answers: [
-                    "Abstinence or contraception",
-                    "Crossing fingers",
-                    "Drinking coffee",
-                    "Eating vegetables"
-                ],
-                correct: 0,
-                explanation: "Abstinence (not having sex) is 100% effective. If sexually active, contraception like condoms or birth control pills are highly effective when used correctly."
+            id: 0,
+            question: "Which of the following is the most reliable way to prevent pregnancy?",
+            answers: [
+                "Choosing to wait until ready or using reliable protection correctly",
+                "Avoiding close contact but not using any protection",
+                "Relying on being healthy and managing stress",
+                "Tracking your mood or body changes to guess safe days"
+            ],
+            correct: 0,
+            explanation: "The safest way to prevent pregnancy is to wait until you feel ready. If someone decides to be sexually active in the future, using reliable protection (like condoms or birth control) correctly every time is the most effective way to stay safe and prevent pregnancy."
             },
             {
-                id: 1,
-                question: "What does STI stand for?",
-                answers: [
-                    "Sexually Transmitted Infection",
-                    "Super Tight Infection",
-                    "Simple Test Info",
-                    "Safe Time Indicator"
-                ],
-                correct: 0,
-                explanation: "STI stands for Sexually Transmitted Infection - infections passed through sexual contact that can be prevented with protection and regular testing."
+            id: 1,
+            question: "What does STI stand for?",
+            answers: [
+                "Super Tight Infection",
+                "Simple Test Info",
+                "Sexually Transmitted Infection",
+                "Safe Time Indicator"
+            ],
+            correct: 2,
+            explanation: "STI stands for Sexually Transmitted Infection - infections passed through sexual contact that can be prevented with protection and regular testing."
             },
             {
-                id: 2,
-                question: "What is consent in a relationship?",
-                answers: [
-                    "Clear, voluntary agreement by all parties",
-                    "Silence means yes",
-                    "Maybe means yes",
-                    "Only needed once"
-                ],
-                correct: 0,
-                explanation: "Consent is a clear, enthusiastic 'yes' that can be withdrawn at any time. It must be given freely without pressure, and silence or maybe never means yes."
+            id: 2,
+            question: "During puberty, which habit is the most important for staying clean and confident?",
+            answers: [
+                "Using strong perfume or body spray to cover body odor",
+                "Showering regularly, changing clothes often, and using deodorant if needed",
+                "Washing only your face because that’s where you sweat most",
+                "Avoiding showers to keep natural body oils"
+            ],
+            correct: 1,
+            explanation: "During puberty, your body produces more sweat and oil. Showering regularly, wearing clean clothes, and using deodorant when needed helps you stay fresh and comfortable. Covering odor with perfume or skipping showers doesn’t keep you truly clean or healthy."
             },
             {
-                id: 3,
-                question: "At what age is it appropriate to learn about puberty?",
-                answers: [
-                    "Before it starts (8-10 years)",
-                    "After 18",
-                    "Never",
-                    "Only in college"
-                ],
-                correct: 0,
-                explanation: "Learning about puberty before it happens (typically ages 8-10) helps young people understand and cope with the physical and emotional changes in their bodies."
+            id: 3,
+            question: "At what age is it appropriate to learn about puberty?",
+            answers: [
+                "After 18",
+                "Never",
+                "Only in college",
+                "Before it starts (8-10 years)"
+            ],
+            correct: 3,
+            explanation: "Learning about puberty before it happens (typically ages 8-10) helps young people understand and cope with the physical and emotional changes in their bodies."
             },
             {
-                id: 4,
-                question: "What is the most effective way to prevent STIs?",
-                answers: [
-                    "Using condoms correctly and consistently",
-                    "Wishful thinking",
-                    "Taking vitamins",
-                    "Drinking lots of water"
-                ],
-                correct: 0,
-                explanation: "Condoms, when used correctly every time, significantly reduce the risk of most STIs. Abstinence is the only 100% effective method."
+            id: 4,
+            question: "What is the most effective way to prevent STIs(Sexually Transmitted Infections)?",
+            answers: [
+                "Using condoms correctly and consistently",
+                "Staying clean and showering after being close with someone",
+                "Only trusting your partner to be honest about their health",
+                "Eating healthy foods to keep your immune system strong"
+            ],
+            correct: 0,
+            explanation: "Condoms, when used correctly every time, significantly reduce the risk of most STIs. Abstinence is the only 100% effective method."
             },
             {
-                id: 5,
-                question: "Should both partners discuss contraception?",
-                answers: [
-                    "Yes, it's a shared responsibility",
-                    "No, only one person's choice",
-                    "Only if married",
-                    "Only after pregnancy"
-                ],
-                correct: 0,
-                explanation: "Both partners should discuss and agree on contraception methods as it affects both people equally and promotes healthy communication."
+            id: 5,
+            question: "Should both partners discuss contraception?",
+            answers: [
+                "Yes, it's a shared responsibility",
+                "No, only one person's choice",
+                "Only if married",
+                "Only after pregnancy"
+            ],
+            correct: 0,
+            explanation: "Both partners should discuss and agree on contraception methods as it affects both people equally and promotes healthy communication."
             },
             {
                 id: 6,
-                question: "What should you do if someone pressures you into sexual activity?",
+                question: "What does 'self-respect' mean in a healthy relationship?",
                 answers: [
-                    "Say no firmly and remove yourself from the situation",
-                    "Give in to avoid conflict",
-                    "Stay silent",
-                    "Feel guilty about saying no"
+                    "Always agreeing with your partner",
+                    "Valuing yourself and setting boundaries",
+                    "Doing whatever makes others happy",
+                    "Ignoring your feelings"
                 ],
-                correct: 0,
-                explanation: "You always have the right to say no. Leave the situation immediately and talk to a trusted adult. Never feel guilty for protecting yourself."
+                correct: 1,
+                explanation: "Self-respect means understanding your worth and knowing your limits in any relationship."
             },
             {
                 id: 7,
-                question: "What is a healthy relationship based on?",
+                question: "Which of the following is a sign of a healthy relationship?",
                 answers: [
-                    "Respect, trust, and open communication",
-                    "Control and jealousy",
-                    "Always agreeing with each other",
-                    "Keeping secrets from each other"
+                    "Jealousy and control",
+                    "Respect and honest communication",
+                    "Ignoring boundaries",
+                    "Constant arguments"
                 ],
-                correct: 0,
-                explanation: "Healthy relationships require mutual respect, trust, honest communication, and supporting each other's independence and personal growth."
-            },
-            {
-                id: 8,
-                question: "What is a sign of good mental wellbeing?",
-                answers: [
-                    "Being able to cope with normal life stress",
-                    "Never feeling sad or stressed",
-                    "Avoiding all difficult situations",
-                    "Not needing friends or family"
-                ],
-                correct: 0,
-                explanation: "Good mental health means you can handle life's challenges effectively, not that you never face difficulties. Everyone experiences stress and sadness sometimes."
-            },
-            {
-                id: 9,
-                question: "Who should you talk to if you're struggling with mental health?",
-                answers: [
-                    "Trusted adult, counselor, or mental health professional",
-                    "Nobody - handle it alone",
-                    "Only strangers online",
-                    "Keep it secret always"
-                ],
-                correct: 0,
-                explanation: "Talking to trusted people and professionals is important. Mental health struggles are common and treatable - you don't have to face them alone."
+                correct: 1,
+                explanation: "A healthy relationship is built on mutual respect, trust, and open communication."
             },
             {
                 id: 10,
-                question: "What is peer pressure?",
+                question: "What does it mean to set boundaries in a friendship or relationship?",
                 answers: [
-                    "When friends influence you to do something you're unsure about",
-                    "When teachers give homework",
-                    "When parents set rules",
-                    "A type of exercise"
+                    "Telling people what they can’t do",
+                    "Defining what behavior makes you feel safe and respected",
+                    "Ignoring others",
+                    "Controlling others"
                 ],
-                correct: 0,
-                explanation: "Peer pressure is when friends or classmates try to influence your decisions. It's okay to say no to things you're uncomfortable with, even if others are doing it."
+                correct: 1,
+                explanation: "Setting boundaries is a healthy way to express your comfort zone and build mutual respect."
             },
             {
-                id: 11,
+                id: 8,
                 question: "What is body autonomy?",
                 answers: [
                     "Your right to make decisions about your own body",
@@ -430,8 +406,41 @@ Generate ${count} questions now:`;
                 explanation: "Body autonomy means you have the right to decide what happens to your body. No one should touch you without your permission, and you can always say no."
             }
         ];
-        
-        return curatedQuestions.slice(0, Math.min(count, curatedQuestions.length));
+
+        // Shuffle answers for each question and update the correct index accordingly
+        const shuffleArray = (arr) => {
+            for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        };
+
+        // Create a fresh copy and shuffle to avoid mutating any external references
+        const randomizedQuestions = curatedQuestions.map((q) => {
+            const copy = {
+            id: q.id,
+            question: q.question,
+            answers: q.answers.slice(),
+            correct: q.correct,
+            explanation: q.explanation
+            };
+
+            // Pair answers with their original index
+            const paired = copy.answers.map((ans, idx) => ({ ans, idx }));
+            shuffleArray(paired);
+
+            // Build new answers and compute new correct index based on original index
+            copy.answers = paired.map(p => p.ans);
+            copy.correct = paired.findIndex(p => p.idx === q.correct);
+
+            return copy;
+        });
+
+        // Use randomizedQuestions for the fallback output
+        const curatedQuestionsFinal = randomizedQuestions;
+
+        return curatedQuestionsFinal.slice(0, Math.min(count, curatedQuestionsFinal.length));
     }
 }
 
