@@ -621,89 +621,96 @@ function closeQuizAndContinue() {
     }
 }
 
-// ===== WHEEL OF FORTUNE SYSTEM =====
+// ===== FORTUNE BOX SYSTEM (Replaced Wheel) =====
 function showWheelOfFortune() {
     gameState.gameActive = false;
-    
+
     const modal = document.getElementById('wheel-modal');
-    const wheel = document.getElementById('fortune-wheel');
-    const spinButton = document.getElementById('spin-wheel-button');
-    const resultText = document.getElementById('wheel-result');
-    
+    const resultText = document.getElementById('fortune-result');
+
+    // Reset all boxes
+    const boxes = document.querySelectorAll('.fortune-box');
+    boxes.forEach(box => {
+        box.classList.remove('selected', 'flipping');
+    });
+
     modal.classList.add('active');
-    resultText.textContent = 'Spin the wheel to see your fate!';
-    resultText.className = 'wheel-result';
-    spinButton.disabled = false;
-    wheel.style.transform = 'rotate(0deg)';
+    resultText.textContent = 'Pick a gift box to begin!';
+    resultText.className = 'fortune-result';
+
+    // Initialize boxes (set up click handlers)
+    initFortuneBoxes();
 }
 
-function spinWheel() {
-    const wheel = document.getElementById('fortune-wheel');
-    const spinButton = document.getElementById('spin-wheel-button');
-    const resultText = document.getElementById('wheel-result');
+// Initialize Fortune Boxes - NEW SYSTEM
+function initFortuneBoxes() {
+    const boxes = document.querySelectorAll('.fortune-box');
+    const resultText = document.getElementById('fortune-result');
 
-    spinButton.disabled = true;
+    boxes.forEach(box => {
+        box.addEventListener('click', function() {
+            if (box.classList.contains('selected')) return;
 
-    // Define wheel outcomes (8 segments) - balanced with 10-point quiz system
-    const outcomes = [
-        { points: 5, label: '+5', emoji: '😊', color: 'green' },
-        { points: 0, label: '0', emoji: '🤔', color: 'blue' },
-        { points: -3, label: '-3', emoji: '😢', color: 'red' },
-        { points: 7, label: '+7', emoji: '🎉', color: 'green' },
-        { points: -5, label: '-5', emoji: '😰', color: 'red' },
-        { points: 10, label: '+10', emoji: '⭐', color: 'green' },
-        { points: 3, label: '+3', emoji: '🎊', color: 'green' },
-        { points: 5, label: '+5', emoji: '✨', color: 'green' }
-    ];
-    
-    // Random spin (3-5 full rotations + random position)
-    const randomIndex = Math.floor(Math.random() * outcomes.length);
-    const segmentAngle = 360 / outcomes.length; // 45 degrees per segment
-    const baseRotation = 360 * (3 + Math.random() * 2); // 3-5 full spins
-    const targetRotation = baseRotation + (randomIndex * segmentAngle) + (segmentAngle / 2);
-    
-    // Animate wheel
-    wheel.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    wheel.style.transform = `rotate(${targetRotation}deg)`;
-    
-    // Play spin sound
-    playSpinSound();
-    
-    setTimeout(() => {
-        const outcome = outcomes[randomIndex];
-        const oldScore = gameState.player.score;
-        gameState.player.score += outcome.points;
-        updateScore();
+            // Disable all boxes
+            boxes.forEach(b => b.classList.add('selected'));
 
-        // Show result with emoji
-        let resultMessage = '';
-        if (outcome.points > 0) {
-            resultMessage = `${outcome.emoji} Lucky! ${outcome.label} points!`;
-            resultText.className = 'wheel-result success';
-            sounds.correct();
-        } else if (outcome.points < 0) {
-            resultMessage = `${outcome.emoji} Unlucky! ${outcome.label} points!`;
-            resultText.className = 'wheel-result failure';
-            sounds.wrong();
-        } else {
-            resultMessage = `${outcome.emoji} Safe! No change`;
-            resultText.className = 'wheel-result safe';
-            playBeep(500, 0.2, 'sine', 0.2);
-        }
+            // Flip the selected box
+            box.classList.add('flipping');
 
-        resultText.textContent = resultMessage;
+            // Play selection sound
+            playBeep(600, 0.15, 'sine', 0.3);
 
-        setTimeout(() => {
-            closeWheelAndContinue();
-        }, 2500);
-    }, 3200);
+            setTimeout(() => {
+                const value = parseInt(box.dataset.value);
+                const emoji = box.dataset.emoji;
+
+                gameState.player.score += value;
+                updateScore();
+
+                // Show result
+                let resultMessage = '';
+                if (value > 0) {
+                    resultMessage = `${emoji} Congratulations! You got ${value > 0 ? '+' : ''}${value} points!`;
+                    resultText.className = 'fortune-result success';
+                    sounds.correct();
+                } else if (value < 0) {
+                    resultMessage = `${emoji} Oh no! You lost ${Math.abs(value)} points!`;
+                    resultText.className = 'fortune-result failure';
+                    sounds.wrong();
+                } else {
+                    resultMessage = `${emoji} Safe! No change`;
+                    resultText.className = 'fortune-result safe';
+                    playBeep(500, 0.2, 'sine', 0.2);
+                }
+
+                resultText.textContent = resultMessage;
+
+                setTimeout(() => {
+                    closeFortuneModalAndContinue();
+                }, 2500);
+            }, 600);
+        });
+    });
 }
 
-function closeWheelAndContinue() {
-    document.getElementById('wheel-modal').classList.remove('active');
+function closeFortuneModalAndContinue() {
+    const modal = document.getElementById('wheel-modal');
+    const boxes = document.querySelectorAll('.fortune-box');
+    const resultText = document.getElementById('fortune-result');
+
+    modal.classList.remove('active');
+
+    // Reset boxes for next time
+    boxes.forEach(box => {
+        box.classList.remove('selected', 'flipping');
+    });
+
+    resultText.textContent = 'Pick a gift box to begin!';
+    resultText.className = 'fortune-result';
+
     gameState.gameActive = true;
     updateDiceUI();
-    
+
     // Check if landed on goal after event
     if (mazeLayout[gameState.player.row][gameState.player.col] === 3) {
         endGame();
@@ -711,22 +718,22 @@ function closeWheelAndContinue() {
 }
 
 function playSpinSound() {
-    // Create a spinning sound effect
+    // Create a spinning sound effect (kept for compatibility)
     try {
         const audioContext = new (window.AudioContext || window.webkitAudioContext)();
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
-        
+
         oscillator.connect(gainNode);
         gainNode.connect(audioContext.destination);
-        
+
         oscillator.type = 'sawtooth';
         oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
         oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 2);
-        
+
         gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2.5);
-        
+
         oscillator.start(audioContext.currentTime);
         oscillator.stop(audioContext.currentTime + 2.5);
     } catch (e) {
