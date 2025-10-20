@@ -9,7 +9,8 @@
 1. Navigate to the `game_app/` directory
 2. Open `index.html` in any modern web browser
 3. Enter your name and start playing!
-4. Use WASD or Arrow keys to move through the maze
+4. Click the "Roll Dice" button to move through the maze
+5. The character will automatically move along the path based on the dice roll (1-6)
 
 **Note**: Uses localStorage for leaderboard (offline mode)
 
@@ -66,14 +67,16 @@ Sexual health education for teenagers (ages 13-18) focused on:
 - Body autonomy and peer pressure
 
 ### Gameplay Mechanics
-1. **Maze Navigation**: Move through a 10x7 grid maze
-2. **Quiz Tiles**: Step on yellow tiles to answer questions
-3. **Reward/Penalty System**: 
-   - Correct answers → Move forward
-   - Wrong answers → Move back
-4. **Goal**: Reach the trophy tile as fast as possible
-5. **Scoring**: Based on correct answers and completion time
-6. **Leaderboard**: Track and compare performance
+1. **Maze Navigation**: Automatic movement along a linear path through a 15x8 grid maze
+2. **Dice Rolling**: Click "Roll Dice" to get a random number (1-6) and move that many steps
+3. **Quiz Tiles**: Step on yellow glowing tiles to answer questions
+4. **Reward/Penalty System**: 
+   - Correct answers → +10 points
+   - Wrong answers → -5 points
+5. **Goal**: Reach the trophy tile as fast as possible
+6. **Scoring**: Based on correct answers and completion time
+7. **Leaderboard**: Track and compare performance
+8. **In-Game Navigation**: Access menu or leaderboard anytime with navigation buttons
 
 ### Key Features
 - 12 carefully crafted educational questions
@@ -132,20 +135,25 @@ Sexual health education for teenagers (ages 13-18) focused on:
 ## ✨ Game Features
 
 ### Gameplay
-- ✅ Maze navigation with WASD/Arrow controls
-- ✅ 12 curated educational quiz questions with explanations
+- ✅ Dice-based movement system with auto-pathfinding
+- ✅ Linear path maze (no branching decisions)
+- ✅ 24 curated sexual health education quiz questions with explanations
 - ✅ 🤖 AI-generated dynamic quiz questions (NEW!)
 - ✅ 🔒 Age-appropriate content filtering (NEW!)
-- ✅ Dynamic difficulty based on player choices
+- ✅ Question randomization for replay value
 - ✅ Real-time timer and score tracking
+- ✅ In-game navigation buttons (menu/leaderboard access)
 - ✅ Goal-oriented progression system
 
 ### Visuals
-- ✅ Custom player avatars (2 variations)
+- ✅ Custom kawaii-style player characters (cute bunny design)
+- ✅ Modern soft UI with pastel gradients
+- ✅ Glassmorphism effects and glowing animations
 - ✅ Colorful quiz and goal icons
 - ✅ Textured floor and wall tiles
-- ✅ Smooth animations and transitions
-- ✅ Cartoonish, friendly art style
+- ✅ Smooth dice rolling animations
+- ✅ Responsive design with beautiful transitions
+- ✅ Friendly, approachable art style for teenagers
 
 ### Audio
 - ✅ Correct answer chime (ascending)
@@ -156,10 +164,13 @@ Sexual health education for teenagers (ages 13-18) focused on:
 ### UI/UX
 - ✅ Multiple screens (menu, game, results, leaderboard)
 - ✅ Player name customization
-- ✅ Instructions screen
-- ✅ Results summary with stats
+- ✅ Instructions screen with gameplay guide
+- ✅ Dice rolling interface with visual feedback
+- ✅ In-game navigation buttons (🏆 leaderboard, 🏠 menu)
+- ✅ Results summary with detailed stats
 - ✅ Top 20 leaderboard display
 - ✅ New record badge notification
+- ✅ Modern pastel color scheme with soft shadows
 
 ### Educational Content
 - ✅ Age-appropriate questions (13-18 years)
@@ -204,15 +215,18 @@ game_submission/
 │           └── quiz.py         # Quiz endpoints (updated with AI)
 ├── game_app/                    # Frontend
 │   ├── index.html              # Main game file
-│   ├── script.js               # Game logic (600+ lines)
+│   ├── script.js               # Game logic (700+ lines)
 │   ├── api-integration.js      # API client (NEW!)
-│   ├── style.css               # Styling (650+ lines)
+│   ├── gemini-quiz.js          # Quiz questions (24 Vietnamese questions)
+│   ├── config.js               # Game configuration
+│   ├── style.css               # Modern UI styling (900+ lines)
 │   ├── asset_preview.html      # Asset testing page
 │   └── assets/
 │       ├── README.md           # Asset documentation
-│       ├── images/             # 6 SVG visual assets
-│       │   ├── player1.svg     # Student with backpack
-│       │   ├── player2.svg     # Student with headphones
+│       ├── images/             # 8 SVG visual assets
+│       │   ├── player1.svg     # Cute pink bunny character
+│       │   ├── player2.svg     # Cute blue bunny character
+│       │   ├── dice.svg        # Dice graphic
 │       │   ├── quiz.svg        # Question mark icon
 │       │   ├── goal.svg        # Trophy icon
 │       │   ├── tile_floor.svg  # Floor texture
@@ -234,10 +248,13 @@ game_submission/
 
 ## 🎨 Asset Details
 
-### Visual Assets (Total: < 15 KB)
-- 6 SVG files (scalable, crisp at any size)
-- Cartoonish, colorful style
-- Student-friendly design
+### Visual Assets (Total: < 20 KB)
+- 8 SVG files (scalable, crisp at any size)
+- Kawaii-style cute characters (pink bunny, blue bunny)
+- Modern dice graphic with animations
+- Pastel gradient design system
+- Quiz and goal icons
+- Textured tiles for maze
 - High contrast for accessibility
 
 ### Sound Effects
@@ -256,23 +273,28 @@ game_submission/
 - ✅ Mobile browsers (iOS/Android)
 
 ### Feature Testing
-- ✅ Maze navigation
-- ✅ Quiz system with feedback
-- ✅ Scoring and timer
-- ✅ Leaderboard persistence
+- ✅ Dice rolling and auto-movement
+- ✅ Linear path navigation
+- ✅ Quiz system with feedback and randomization
+- ✅ Scoring and timer accuracy
+- ✅ Leaderboard persistence (localStorage)
+- ✅ In-game navigation buttons
 - ✅ Sound effects
-- ✅ Responsive design
+- ✅ Responsive design (desktop + mobile)
+- ✅ Modern UI animations and transitions
 
 ## 📊 Game Statistics
 
-- **Lines of Code**: ~1,800+ (HTML, CSS, JS, Python)
-- **Curated Questions**: 12 comprehensive educational questions
+- **Lines of Code**: ~2,000+ (HTML, CSS, JS, Python)
+- **Curated Questions**: 24 comprehensive sexual health questions (Vietnamese)
 - **AI-Generated Questions**: Unlimited via Gemini API (NEW!)
-- **Maze Size**: 10×7 grid (70 tiles)
-- **Quiz Tiles**: 12 positioned throughout maze
-- **Load Time**: < 1 second (all assets < 15 KB)
+- **Maze Size**: 15×8 grid (120 tiles)
+- **Path Length**: ~41 tiles in linear path
+- **Quiz Tiles**: 9 positioned along the path
+- **Load Time**: < 1 second (all assets < 20 KB)
 - **Platforms**: Web (desktop + mobile)
 - **Backend Endpoints**: 12+ REST API endpoints (NEW!)
+- **UI Design**: Modern soft UI with pastel gradients and glassmorphism
 
 ## 🏆 Educational Impact
 

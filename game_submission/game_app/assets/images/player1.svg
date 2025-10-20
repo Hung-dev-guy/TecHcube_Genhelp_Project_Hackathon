@@ -1,38 +1,67 @@
-<svg width="128" height="128" xmlns="http://www.w3.org/2000/svg">
-  <!-- Player 1: Friendly student with backpack -->
-  <defs>
-    <linearGradient id="skin1" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#FFD9A0;stop-opacity:1" />
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Super Cute Kawaii Character -->
   
-  <!-- Backpack -->
-  <rect x="35" y="70" width="58" height="48" rx="8" fill="#4CAF50" stroke="#2E7D32" stroke-width="3"/>
-  <rect x="45" y="78" width="38" height="32" rx="4" fill="#66BB6A"/>
-  <circle cx="50" cy="90" r="4" fill="#2E7D32"/>
-  <circle cx="74" cy="90" r="4" fill="#2E7D32"/>
+  <!-- Body (round and chubby) -->
+  <ellipse cx="60" cy="70" rx="38" ry="42" fill="#FFB6C1" stroke="#FF69B4" stroke-width="3"/>
   
-  <!-- Body -->
-  <ellipse cx="64" cy="85" rx="28" ry="35" fill="#4A90E2"/>
-  <ellipse cx="64" cy="85" rx="22" ry="28" fill="#5BA3F5"/>
+  <!-- Head (big and round) -->
+  <circle cx="60" cy="45" r="32" fill="#FFF0F5" stroke="#FF69B4" stroke-width="3"/>
   
-  <!-- Head -->
-  <circle cx="64" cy="42" r="28" fill="url(#skin1)" stroke="#D2691E" stroke-width="2"/>
+  <!-- Cute bunny ears -->
+  <ellipse cx="42" cy="20" rx="10" ry="22" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5" transform="rotate(-15 42 20)"/>
+  <ellipse cx="78" cy="20" rx="10" ry="22" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5" transform="rotate(15 78 20)"/>
   
-  <!-- Hair -->
-  <path d="M 36 35 Q 40 20, 64 18 Q 88 20, 92 35 Q 92 42, 88 48 L 40 48 Q 36 42, 36 35" fill="#8B4513"/>
+  <!-- Inner ears -->
+  <ellipse cx="42" cy="23" rx="5" ry="12" fill="#FFF0F5" transform="rotate(-15 42 23)"/>
+  <ellipse cx="78" cy="23" rx="5" ry="12" fill="#FFF0F5" transform="rotate(15 78 23)"/>
   
-  <!-- Eyes -->
-  <circle cx="54" cy="42" r="5" fill="white"/>
-  <circle cx="74" cy="42" r="5" fill="white"/>
-  <circle cx="55" cy="43" r="3" fill="black"/>
-  <circle cx="75" cy="43" r="3" fill="black"/>
+  <!-- Big sparkly eyes -->
+  <ellipse cx="48" cy="42" rx="5" ry="7" fill="#2d3436"/>
+  <ellipse cx="72" cy="42" rx="5" ry="7" fill="#2d3436"/>
   
-  <!-- Smile -->
-  <path d="M 50 52 Q 64 58, 78 52" stroke="#8B4513" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Eye highlights (sparkles) -->
+  <circle cx="50" cy="40" r="2.5" fill="#ffffff"/>
+  <circle cx="74" cy="40" r="2.5" fill="#ffffff"/>
+  <circle cx="46" cy="44" r="1.5" fill="#ffffff" opacity="0.8"/>
+  <circle cx="70" cy="44" r="1.5" fill="#ffffff" opacity="0.8"/>
   
-  <!-- Backpack straps -->
-  <rect x="48" y="65" width="6" height="20" rx="3" fill="#2E7D32"/>
-  <rect x="74" y="65" width="6" height="20" rx="3" fill="#2E7D32"/>
+  <!-- Super cute smile -->
+  <path d="M 46 54 Q 60 62 74 54" stroke="#FF69B4" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Tiny cute nose -->
+  <ellipse cx="60" cy="50" rx="2" ry="1.5" fill="#FFB6C1"/>
+  
+  <!-- Rosy cheeks -->
+  <ellipse cx="38" cy="50" rx="7" ry="5" fill="#FFB6C1" opacity="0.7"/>
+  <ellipse cx="82" cy="50" rx="7" ry="5" fill="#FFB6C1" opacity="0.7"/>
+  
+  <!-- Small round arms -->
+  <ellipse cx="28" cy="75" rx="12" ry="18" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5" transform="rotate(-20 28 75)"/>
+  <ellipse cx="92" cy="75" rx="12" ry="18" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5" transform="rotate(20 92 75)"/>
+  
+  <!-- Cute little hands -->
+  <circle cx="23" cy="88" r="7" fill="#FFF0F5" stroke="#FF69B4" stroke-width="2"/>
+  <circle cx="97" cy="88" r="7" fill="#FFF0F5" stroke="#FF69B4" stroke-width="2"/>
+  
+  <!-- Chubby feet -->
+  <ellipse cx="48" cy="108" rx="14" ry="10" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5"/>
+  <ellipse cx="72" cy="108" rx="14" ry="10" fill="#FFB6C1" stroke="#FF69B4" stroke-width="2.5"/>
+  
+  <!-- Toe details -->
+  <circle cx="44" cy="108" r="3" fill="#FFF0F5"/>
+  <circle cx="52" cy="108" r="3" fill="#FFF0F5"/>
+  <circle cx="68" cy="108" r="3" fill="#FFF0F5"/>
+  <circle cx="76" cy="108" r="3" fill="#FFF0F5"/>
+  
+  <!-- Cute belly button -->
+  <circle cx="60" cy="80" r="2.5" fill="#FF69B4" opacity="0.5"/>
+  
+  <!-- Decorative bow on head -->
+  <ellipse cx="50" cy="15" rx="8" ry="6" fill="#FF1493" transform="rotate(-30 50 15)"/>
+  <ellipse cx="70" cy="15" rx="8" ry="6" fill="#FF1493" transform="rotate(30 70 15)"/>
+  <circle cx="60" cy="15" r="4" fill="#FF1493"/>
+  <circle cx="60" cy="15" r="2" fill="#FFD700"/>
+  
+  <!-- Small heart on belly -->
+  <path d="M 60 68 L 62 70 L 60 73 L 58 70 Z" fill="#FF1493" opacity="0.6"/>
 </svg>

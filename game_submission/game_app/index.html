@@ -20,11 +20,32 @@
 
         <!-- Player Name Input Screen -->
         <div id="name-input-screen" class="screen">
-            <h2>Enter Your Name</h2>
-            <div class="name-input-container">
-                <input type="text" id="player-name-input" placeholder="Your Name" maxlength="20" />
-                <button id="start-game-button" class="menu-btn">Start</button>
-                <button id="cancel-name-button" class="menu-btn secondary">Cancel</button>
+            <div class="name-input-content">
+                <div class="welcome-icon">🎮</div>
+                <h2>Welcome to the Game!</h2>
+                <p class="welcome-text">Before we start, tell us your name so we can track your amazing progress!</p>
+                <div class="name-input-container">
+                    <label for="player-name-input">Your Name:</label>
+                    <input type="text" id="player-name-input" placeholder="Enter your name here..." maxlength="20" />
+                    <div class="button-group">
+                        <button id="start-game-button" class="menu-btn">Let's Play! 🚀</button>
+                        <button id="cancel-name-button" class="menu-btn secondary">Back to Menu</button>
+                    </div>
+                </div>
+                <div class="info-badges">
+                    <div class="info-badge" id="leaderboard-badge">
+                        <span class="badge-icon">🏆</span>
+                        <span>Compete on Leaderboard</span>
+                    </div>
+                    <div class="info-badge" id="education-badge">
+                        <span class="badge-icon">📚</span>
+                        <span>Learn Sexual Health</span>
+                    </div>
+                    <div class="info-badge" id="progress-badge">
+                        <span class="badge-icon">🎯</span>
+                        <span>Track Your Progress</span>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -59,11 +80,13 @@
         <div id="instructions-screen" class="screen">
             <h2>How to Play</h2>
             <div class="instructions-content">
-                <p><strong>Controls:</strong> Use WASD or Arrow keys to move</p>
-                <p>Step on quiz tiles (marked with ?) to answer questions</p>
-                <p>Correct answers move you forward, wrong answers move you back</p>
-                <p>Reach the goal (★) as fast as possible!</p>
-                <p>Your score is based on correct answers and completion time</p>
+                <p><strong>🎲 How to Move:</strong> Click "Roll Dice" to get a random number (1-6)</p>
+                <p><strong>🎮 Auto-Movement:</strong> Your character will automatically move that many steps along the path</p>
+                <p><strong>❓ Quiz Tiles:</strong> Step on glowing yellow tiles to answer sexual health education questions</p>
+                <p><strong>✅ Scoring:</strong> Correct answers = +10 points, Wrong answers = -5 points</p>
+                <p><strong>🏆 Goal:</strong> Reach the trophy tile as fast as possible!</p>
+                <p><strong>📊 Leaderboard:</strong> Your final score is based on correct answers and completion time</p>
+                <p><strong>🎯 Navigation:</strong> Use 🏆 and 🏠 buttons to access leaderboard or menu anytime</p>
             </div>
             <button id="back-to-menu" class="menu-btn">Back to Menu</button>
         </div>
@@ -78,9 +101,27 @@
                     </div>
                 </div>
                 <div id="timer" class="timer">Time: 0:00</div>
+                <div class="game-nav-buttons">
+                    <button id="view-leaderboard-ingame" class="nav-btn" title="View Leaderboard">🏆</button>
+                    <button id="back-to-menu-ingame" class="nav-btn" title="Back to Menu">🏠</button>
+                </div>
             </div>
 
             <div id="maze-container"></div>
+
+            <!-- Dice Controls -->
+            <div id="dice-controls">
+                <div id="dice-container">
+                    <div id="dice" class="dice dice-1">
+                        <img src="assets/images/dice.svg" alt="Dice" />
+                    </div>
+                    <div id="dice-result">?</div>
+                </div>
+                <button id="roll-dice-button" class="roll-dice-btn">
+                    🎲 Roll Dice
+                </button>
+                <div id="steps-remaining"></div>
+            </div>
         </div>
 
         <!-- Result Screen -->
@@ -104,6 +145,10 @@
                     <span id="total-score">0</span>
                 </div>
             </div>
+            
+            <!-- Achievement Section -->
+            <div id="achievement-section"></div>
+            
             <div id="new-record-badge" class="new-record-badge">New Record!</div>
             <div class="menu-buttons">
                 <button id="view-leaderboard-button" class="menu-btn">View Leaderboard</button>
@@ -119,6 +164,55 @@
                 <p id="question-text">Sample Question?</p>
                 <div id="answers-container"></div>
                 <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Sexual Health Education Modal -->
+        <div id="education-modal" class="modal">
+            <div class="modal-content education-modal-content">
+                <button class="close-modal" id="close-education">&times;</button>
+                <h2>📚 Sexual Health Education</h2>
+                <div class="education-content">
+                    <div class="education-section">
+                        <h3>🛡️ Safe Sex & Protection</h3>
+                        <p><strong>Condoms:</strong> The most effective way to prevent STIs and pregnancy. Use them correctly every time.</p>
+                        <p><strong>Birth Control:</strong> Various methods including pills, IUDs, implants. Consult healthcare providers.</p>
+                        <p><strong>Emergency Contraception:</strong> Available within 72 hours after unprotected sex.</p>
+                    </div>
+                    
+                    <div class="education-section">
+                        <h3>🧬 STI Prevention & Awareness</h3>
+                        <p><strong>Common STIs:</strong> Chlamydia, gonorrhea, syphilis, HPV, herpes, HIV/AIDS.</p>
+                        <p><strong>Testing:</strong> Get tested regularly if sexually active. Many STIs have no symptoms.</p>
+                        <p><strong>Treatment:</strong> Most STIs are treatable. Early detection is crucial.</p>
+                        <p><strong>Prevention:</strong> Use protection, limit partners, get vaccinated (HPV, Hepatitis B).</p>
+                    </div>
+                    
+                    <div class="education-section">
+                        <h3>💬 Consent & Communication</h3>
+                        <p><strong>What is Consent?</strong> Freely given, reversible, informed, enthusiastic, and specific (FRIES).</p>
+                        <p><strong>Communication:</strong> Talk openly with partners about boundaries, desires, and safety.</p>
+                        <p><strong>Saying No:</strong> You have the right to say no at any time. Respect others' boundaries.</p>
+                        <p><strong>Healthy Relationships:</strong> Built on trust, respect, communication, and equality.</p>
+                    </div>
+                    
+                    <div class="education-section">
+                        <h3>🧠 Mental Health & Wellbeing</h3>
+                        <p><strong>Body Image:</strong> Everyone's body is different. Love and respect yourself.</p>
+                        <p><strong>Peer Pressure:</strong> It's okay to wait. Make decisions that feel right for you.</p>
+                        <p><strong>Support:</strong> Talk to trusted adults, counselors, or helplines if you need help.</p>
+                        <p><strong>Resources:</strong> Planned Parenthood, local health clinics, school counselors.</p>
+                    </div>
+                    
+                    <div class="education-section">
+                        <h3>🌟 Your Rights</h3>
+                        <p><strong>Bodily Autonomy:</strong> Your body belongs to you. You decide what happens to it.</p>
+                        <p><strong>Privacy:</strong> Healthcare providers keep your information confidential.</p>
+                        <p><strong>Access to Care:</strong> You have the right to sexual health services.</p>
+                        <p><strong>Education:</strong> You deserve accurate, comprehensive sex education.</p>
+                    </div>
+                </div>
+                <button class="menu-btn" id="close-education-btn">Got It! 👍</button>
             </div>
         </div>
     </div>
