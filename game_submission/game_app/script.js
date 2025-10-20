@@ -1,7 +1,7 @@
 // ===== GAME STATE =====
 const gameState = {
     currentScreen: 'menu',
-    player: { row: 0, col: 0, score: 0, name: 'Anonymous' },
+    player: { row: 0, col: 0, score: 0, name: 'Anonymous', character: 'player1' },
     timerStart: 0,
     timerInterval: null,
     gameActive: false,
@@ -44,22 +44,21 @@ async function loadQuizQuestions() {
 }
 
 // ===== MAZE LAYOUT (15x8 grid) =====
-// 0 = wall, 1 = path, 2 = quiz tile, 3 = goal
-// BEAUTIFUL SNAKE PATTERN - Clean zigzag path!
+// 0 = wall, 1 = path, 2 = quiz tile, 3 = goal, 4 = event tile (wheel of fortune)
+// BEAUTIFUL SNAKE PATTERN - Balanced: 7 quiz tiles, 3 spin tiles
 const mazeLayout = [
-    // Row 0: Start → → → → → → → → → → → → → (to column 13)
-    [1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1],
-    // Row 1: Vertical connector at column 13
+    // Row 0: Start → → → → → → → → → → → → → (to column 14)
+    [1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 2, 1, 1],
+    // Row 1: Vertical connector at column 14
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-    // Row 2: ← ← ← ← ← ← ← ← ← ← ← ← ← (from column 13 to 1)
-    [1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1],
-    // Row 3: Vertical connector at column 1
+    // Row 2: ← ← ← ← ← ← ← ← ← ← ← ← ← ← (from column 14 to 0)
+    [1, 1, 1, 2, 1, 1, 4, 1, 1, 2, 1, 1, 1, 4, 1],
+    // Row 3: Vertical connector at column 0
     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    // Row 6: ← ← ← ← ← ← ← ← ← ← ← ← ← (from column 13 to 1)
-    [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2],
-    // Row 7: Down and → → → → → → → → → → → to GOAL
-    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 3]
+    // Row 4: → → → → → → → → → → → → → → (from column 0 to 14)
+    [1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1],
+    // Row 5: Vertical connector and path to GOAL
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
 ];
 
 // Note: Quiz questions are now loaded dynamically
@@ -213,7 +212,7 @@ document.getElementById('view-leaderboard-button').addEventListener('click', () 
 });
 
 // ===== NAME INPUT =====
-document.getElementById('start-game-button').addEventListener('click', async () => {
+document.getElementById('start-game-button').addEventListener('click', () => {
     const nameInput = document.getElementById('player-name-input');
     const name = nameInput.value.trim();
 
@@ -221,29 +220,50 @@ document.getElementById('start-game-button').addEventListener('click', async () 
         alert('Please enter your name!');
         return;
     }
-
-    // Ensure quiz questions are loaded
-    if (!gameState.quizQuestions || gameState.quizQuestions.length === 0) {
-        console.log('⏳ Loading quiz questions...');
-        const startButton = document.getElementById('start-game-button');
-        startButton.disabled = true;
-        startButton.textContent = 'Loading...';
-        
-        await loadQuizQuestions();
-        
-        startButton.disabled = false;
-        startButton.textContent = 'Start';
-    }
-
     gameState.player.name = name;
-    nameInput.value = '';
-    startGame();
+    showScreen('character-selection');
 });
 
 document.getElementById('cancel-name-button').addEventListener('click', () => {
     document.getElementById('player-name-input').value = '';
     showScreen('menu');
 });
+
+// ===== CHARACTER SELECTION =====
+document.querySelectorAll('.character-option').forEach(option => {
+    option.addEventListener('click', () => {
+        // Remove selected class from all options
+        document.querySelectorAll('.character-option').forEach(o => o.classList.remove('selected'));
+        // Add selected class to the clicked option
+        option.classList.add('selected');
+        // Store the selected character
+        gameState.player.character = option.dataset.character;
+        // Enable the confirm button
+        document.getElementById('confirm-character-button').disabled = false;
+    });
+});
+
+document.getElementById('confirm-character-button').addEventListener('click', async () => {
+    // Ensure quiz questions are loaded
+    if (!gameState.quizQuestions || gameState.quizQuestions.length === 0) {
+        console.log('⏳ Loading quiz questions...');
+        const confirmButton = document.getElementById('confirm-character-button');
+        confirmButton.disabled = true;
+        confirmButton.textContent = 'Loading...';
+        
+        await loadQuizQuestions();
+        
+        confirmButton.disabled = false;
+        confirmButton.textContent = 'Start Game';
+    }
+
+    startGame();
+});
+
+document.getElementById('back-to-name-button').addEventListener('click', () => {
+    showScreen('name-input');
+});
+
 
 // Allow Enter key to start game
 document.getElementById('player-name-input').addEventListener('keypress', (e) => {
@@ -314,6 +334,7 @@ function buildMaze() {
             else if (tileType === 1) tile.classList.add('path');
             else if (tileType === 2) tile.classList.add('quiz');
             else if (tileType === 3) tile.classList.add('goal');
+            else if (tileType === 4) tile.classList.add('event');
 
             mazeContainer.appendChild(tile);
         }
@@ -330,7 +351,7 @@ function renderPlayer() {
     const playerTile = getTileElement(gameState.player.row, gameState.player.col);
     if (playerTile) {
         const playerElement = document.createElement('div');
-        playerElement.className = 'player player1';
+        playerElement.className = `player ${gameState.player.character}`;
         playerTile.appendChild(playerElement);
     }
 }
@@ -459,6 +480,11 @@ function movePlayerAutomatically() {
                 gameState.stepsRemaining = 0;
                 updateDiceUI();
                 setTimeout(() => showQuiz(), 300); // Small delay before showing quiz
+            } else if (tileType === 4) {
+                // Event tile - stop moving and show wheel of fortune
+                gameState.stepsRemaining = 0;
+                updateDiceUI();
+                setTimeout(() => showWheelOfFortune(), 300);
             } else if (tileType === 3) {
                 // Goal tile - player wins!
                 gameState.stepsRemaining = 0;
@@ -595,6 +621,119 @@ function closeQuizAndContinue() {
     }
 }
 
+// ===== WHEEL OF FORTUNE SYSTEM =====
+function showWheelOfFortune() {
+    gameState.gameActive = false;
+    
+    const modal = document.getElementById('wheel-modal');
+    const wheel = document.getElementById('fortune-wheel');
+    const spinButton = document.getElementById('spin-wheel-button');
+    const resultText = document.getElementById('wheel-result');
+    
+    modal.classList.add('active');
+    resultText.textContent = 'Spin the wheel to see your fate!';
+    resultText.className = 'wheel-result';
+    spinButton.disabled = false;
+    wheel.style.transform = 'rotate(0deg)';
+}
+
+function spinWheel() {
+    const wheel = document.getElementById('fortune-wheel');
+    const spinButton = document.getElementById('spin-wheel-button');
+    const resultText = document.getElementById('wheel-result');
+
+    spinButton.disabled = true;
+
+    // Define wheel outcomes (8 segments) - balanced with 10-point quiz system
+    const outcomes = [
+        { points: 5, label: '+5', emoji: '😊', color: 'green' },
+        { points: 0, label: '0', emoji: '🤔', color: 'blue' },
+        { points: -3, label: '-3', emoji: '😢', color: 'red' },
+        { points: 7, label: '+7', emoji: '🎉', color: 'green' },
+        { points: -5, label: '-5', emoji: '😰', color: 'red' },
+        { points: 10, label: '+10', emoji: '⭐', color: 'green' },
+        { points: 3, label: '+3', emoji: '🎊', color: 'green' },
+        { points: 5, label: '+5', emoji: '✨', color: 'green' }
+    ];
+    
+    // Random spin (3-5 full rotations + random position)
+    const randomIndex = Math.floor(Math.random() * outcomes.length);
+    const segmentAngle = 360 / outcomes.length; // 45 degrees per segment
+    const baseRotation = 360 * (3 + Math.random() * 2); // 3-5 full spins
+    const targetRotation = baseRotation + (randomIndex * segmentAngle) + (segmentAngle / 2);
+    
+    // Animate wheel
+    wheel.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)';
+    wheel.style.transform = `rotate(${targetRotation}deg)`;
+    
+    // Play spin sound
+    playSpinSound();
+    
+    setTimeout(() => {
+        const outcome = outcomes[randomIndex];
+        const oldScore = gameState.player.score;
+        gameState.player.score += outcome.points;
+        updateScore();
+
+        // Show result with emoji
+        let resultMessage = '';
+        if (outcome.points > 0) {
+            resultMessage = `${outcome.emoji} Lucky! ${outcome.label} points!`;
+            resultText.className = 'wheel-result success';
+            sounds.correct();
+        } else if (outcome.points < 0) {
+            resultMessage = `${outcome.emoji} Unlucky! ${outcome.label} points!`;
+            resultText.className = 'wheel-result failure';
+            sounds.wrong();
+        } else {
+            resultMessage = `${outcome.emoji} Safe! No change`;
+            resultText.className = 'wheel-result safe';
+            playBeep(500, 0.2, 'sine', 0.2);
+        }
+
+        resultText.textContent = resultMessage;
+
+        setTimeout(() => {
+            closeWheelAndContinue();
+        }, 2500);
+    }, 3200);
+}
+
+function closeWheelAndContinue() {
+    document.getElementById('wheel-modal').classList.remove('active');
+    gameState.gameActive = true;
+    updateDiceUI();
+    
+    // Check if landed on goal after event
+    if (mazeLayout[gameState.player.row][gameState.player.col] === 3) {
+        endGame();
+    }
+}
+
+function playSpinSound() {
+    // Create a spinning sound effect
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.type = 'sawtooth';
+        oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+        oscillator.frequency.exponentialRampToValueAtTime(600, audioContext.currentTime + 2);
+        
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 2.5);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + 2.5);
+    } catch (e) {
+        console.log('Audio not supported');
+    }
+}
+
 // ===== TIMER =====
 function updateTimer() {
     const elapsed = Math.floor((Date.now() - gameState.timerStart) / 1000);
@@ -606,30 +745,34 @@ function updateTimer() {
 
 // ===== SCORE UPDATE =====
 function updateScore() {
+    // Ensure score never goes below 0
+    if (gameState.player.score < 0) {
+        gameState.player.score = 0;
+    }
     document.getElementById('player-score').textContent = `Score: ${gameState.player.score}`;
 }
 
 // ===== ACHIEVEMENT SYSTEM =====
 function getAchievementByScore(score) {
     // Define achievement tiers based on score
-    // Perfect score would be 9 quizzes × 10 points = 90 points
-    // (Assuming player answers all correctly)
-    
-    if (score >= 80) {
+    // Maximum realistic score: 7 quiz tiles × 10 points + 3 spins × ~5 = ~85 points
+    // Perfect play: 70 points (all quizzes correct) + wheel bonus
+
+    if (score >= 65) {
         return {
             title: "🏆 Sexual Health Expert",
             emoji: "🌟",
             message: "Outstanding! You have excellent knowledge of sexual health.",
             advice: "Your comprehensive understanding of sexual health is impressive! Continue being a reliable source of information for your peers. Consider volunteering for peer education programs to share your knowledge. Remember to keep learning as health information evolves."
         };
-    } else if (score >= 60) {
+    } else if (score >= 50) {
         return {
             title: "🥇 Health Champion",
             emoji: "💪",
             message: "Great job! You have strong sexual health knowledge.",
             advice: "You're doing great! You have a solid foundation in sexual health education. To further improve, consider reading more about topics you found challenging. Stay curious and don't hesitate to ask healthcare professionals questions. Keep up the excellent work!"
         };
-    } else if (score >= 40) {
+    } else if (score >= 35) {
         return {
             title: "🥈 Health Learner",
             emoji: "📚",
