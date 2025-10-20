@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maze of Choices</title>
+    <title>GenHelp</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="game-container">
         <!-- Menu Screen -->
         <div id="menu-screen" class="screen active">
-            <h1 class="game-title">Maze of Choices</h1>
+            <h1 class="game-title">GenHelp</h1>
             <div class="menu-buttons">
                 <button id="start-button" class="menu-btn">Start Game</button>
                 <button id="instructions-button" class="menu-btn">Instructions</button>
@@ -45,6 +45,28 @@
                         <span class="badge-icon">🎯</span>
                         <span>Track Your Progress</span>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Selection Screen -->
+        <div id="character-selection-screen" class="screen">
+            <div class="character-selection-content">
+                <h2>Choose Your Character</h2>
+                <p>Select the character you want to play with.</p>
+                <div class="character-options">
+                    <div class="character-option" data-character="player1">
+                        <img src="assets/images/player1.svg" alt="Male Character">
+                        <span>Male</span>
+                    </div>
+                    <div class="character-option" data-character="player2">
+                        <img src="assets/images/player2.svg" alt="Female Character">
+                        <span>Female</span>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button id="confirm-character-button" class="menu-btn" disabled>Start Game</button>
+                    <button id="back-to-name-button" class="menu-btn secondary">Back</button>
                 </div>
             </div>
         </div>
@@ -164,6 +186,72 @@
                 <p id="question-text">Sample Question?</p>
                 <div id="answers-container"></div>
                 <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- Wheel of Fortune Modal -->
+        <div id="wheel-modal" class="modal">
+            <div class="modal-content wheel-modal-content">
+                <h3>🎰 Wheel of Destiny!</h3>
+                <p class="wheel-description">Meet your luck! Spin to see what destiny brings you!</p>
+                <div class="wheel-container">
+                    <div class="wheel-pointer">👇</div>
+                    <div class="wheel-outer-ring">
+                        <div id="fortune-wheel" class="fortune-wheel">
+                            <div class="wheel-center">🎯</div>
+                            <div class="wheel-segment seg-1">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">😊</span>
+                                    +5
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-2">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">🤔</span>
+                                    0
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-3">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">😢</span>
+                                    -3
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-4">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">🎉</span>
+                                    +7
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-5">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">😰</span>
+                                    -5
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-6">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">⭐</span>
+                                    +10
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-7">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">🎊</span>
+                                    +3
+                                </span>
+                            </div>
+                            <div class="wheel-segment seg-8">
+                                <span class="segment-text">
+                                    <span class="segment-emoji">✨</span>
+                                    +5
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="spin-wheel-button" class="menu-btn spin-btn" onclick="spinWheel()">🎲 SPIN NOW!</button>
+                <div id="wheel-result" class="wheel-result">Spin the wheel to meet your destiny!</div>
             </div>
         </div>
 
