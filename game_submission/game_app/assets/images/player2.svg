@@ -1,64 +1,81 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
-  <!-- Super Cute Kawaii Character - Player 2 (Different color) -->
-  
-  <!-- Body (round and chubby) -->
-  <ellipse cx="60" cy="70" rx="38" ry="42" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="3"/>
-  
-  <!-- Head (big and round) -->
-  <circle cx="60" cy="45" r="32" fill="#E7F6FF" stroke="#3FA2F6" stroke-width="3"/>
-  
-  <!-- Cute bunny ears -->
-  <ellipse cx="42" cy="20" rx="10" ry="22" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5" transform="rotate(-15 42 20)"/>
-  <ellipse cx="78" cy="20" rx="10" ry="22" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5" transform="rotate(15 78 20)"/>
-  
-  <!-- Inner ears -->
-  <ellipse cx="42" cy="23" rx="5" ry="12" fill="#E7F6FF" transform="rotate(-15 42 23)"/>
-  <ellipse cx="78" cy="23" rx="5" ry="12" fill="#E7F6FF" transform="rotate(15 78 23)"/>
-  
-  <!-- Big sparkly eyes -->
-  <ellipse cx="48" cy="42" rx="5" ry="7" fill="#2d3436"/>
-  <ellipse cx="72" cy="42" rx="5" ry="7" fill="#2d3436"/>
-  
-  <!-- Eye highlights (sparkles) -->
-  <circle cx="50" cy="40" r="2.5" fill="#ffffff"/>
-  <circle cx="74" cy="40" r="2.5" fill="#ffffff"/>
-  <circle cx="46" cy="44" r="1.5" fill="#ffffff" opacity="0.8"/>
-  <circle cx="70" cy="44" r="1.5" fill="#ffffff" opacity="0.8"/>
-  
-  <!-- Super cute smile -->
-  <path d="M 46 54 Q 60 62 74 54" stroke="#3FA2F6" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  
-  <!-- Tiny cute nose -->
-  <ellipse cx="60" cy="50" rx="2" ry="1.5" fill="#B4E4FF"/>
-  
-  <!-- Rosy cheeks -->
-  <ellipse cx="38" cy="50" rx="7" ry="5" fill="#B4E4FF" opacity="0.7"/>
-  <ellipse cx="82" cy="50" rx="7" ry="5" fill="#B4E4FF" opacity="0.7"/>
-  
-  <!-- Small round arms -->
-  <ellipse cx="28" cy="75" rx="12" ry="18" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5" transform="rotate(-20 28 75)"/>
-  <ellipse cx="92" cy="75" rx="12" ry="18" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5" transform="rotate(20 92 75)"/>
-  
-  <!-- Cute little hands -->
-  <circle cx="23" cy="88" r="7" fill="#E7F6FF" stroke="#3FA2F6" stroke-width="2"/>
-  <circle cx="97" cy="88" r="7" fill="#E7F6FF" stroke="#3FA2F6" stroke-width="2"/>
-  
-  <!-- Chubby feet -->
-  <ellipse cx="48" cy="108" rx="14" ry="10" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5"/>
-  <ellipse cx="72" cy="108" rx="14" ry="10" fill="#B4E4FF" stroke="#3FA2F6" stroke-width="2.5"/>
-  
-  <!-- Toe details -->
-  <circle cx="44" cy="108" r="3" fill="#E7F6FF"/>
-  <circle cx="52" cy="108" r="3" fill="#E7F6FF"/>
-  <circle cx="68" cy="108" r="3" fill="#E7F6FF"/>
-  <circle cx="76" cy="108" r="3" fill="#E7F6FF"/>
-  
-  <!-- Cute belly button -->
-  <circle cx="60" cy="80" r="2.5" fill="#3FA2F6" opacity="0.5"/>
-  
-  <!-- Decorative star on head -->
-  <polygon points="60,10 62,16 68,16 63,20 65,26 60,22 55,26 57,20 52,16 58,16" fill="#FFD700" stroke="#FFA500" stroke-width="1.5"/>
-  
-  <!-- Small heart on belly -->
-  <path d="M 60 68 L 62 70 L 60 73 L 58 70 Z" fill="#3FA2F6" opacity="0.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 140" width="120" height="140">
+  <!-- Female Student Character - More Human-like -->
+
+  <!-- Body/Torso (Pink dress) -->
+  <path d="M 60,82 L 45,95 L 40,125 L 50,125 L 50,130 L 52,137 L 50,137 L 54,137 L 56,137 L 60,82 Z" fill="#e91e63"/>
+  <path d="M 60,82 L 75,95 L 80,125 L 70,125 L 70,130 L 68,137 L 70,137 L 66,137 L 64,137 L 60,82 Z" fill="#e91e63"/>
+  <ellipse cx="60" cy="95" rx="26" ry="32" fill="#ec407a"/>
+
+  <!-- Neck -->
+  <rect x="52" y="70" width="16" height="12" fill="#f8d7da" rx="3"/>
+
+  <!-- Arms -->
+  <ellipse cx="38" cy="95" rx="7" ry="26" fill="#ec407a"/>
+  <ellipse cx="82" cy="95" rx="7" ry="26" fill="#ec407a"/>
+
+  <!-- Hands -->
+  <circle cx="38" cy="116" r="7" fill="#f8d7da"/>
+  <circle cx="82" cy="116" r="7" fill="#f8d7da"/>
+
+  <!-- Shoes -->
+  <ellipse cx="52" cy="136" rx="7" ry="3" fill="#c2185b"/>
+  <ellipse cx="68" cy="136" rx="7" ry="3" fill="#c2185b"/>
+
+  <!-- Head -->
+  <circle cx="60" cy="45" r="25" fill="#f8d7da"/>
+
+  <!-- Ears -->
+  <ellipse cx="38" cy="50" rx="4" ry="7" fill="#f8d7da"/>
+  <ellipse cx="82" cy="50" rx="4" ry="7" fill="#f8d7da"/>
+
+  <!-- Hair (Long with ponytail) -->
+  <ellipse cx="60" cy="28" rx="26" ry="18" fill="#6d4c41"/>
+  <path d="M 34,42 C 34,28 44,20 60,20 C 76,20 86,28 86,42 C 86,32 76,30 60,30 C 44,30 34,32 34,42 Z" fill="#6d4c41"/>
+
+  <!-- Ponytail -->
+  <ellipse cx="60" cy="16" rx="18" ry="12" fill="#6d4c41"/>
+  <ellipse cx="60" cy="10" rx="14" ry="8" fill="#5d4037"/>
+
+  <!-- Hair sides (covering ears partially) -->
+  <path d="M 34,45 C 30,48 28,55 30,62 C 32,58 34,52 36,48 Z" fill="#6d4c41"/>
+  <path d="M 86,45 C 90,48 92,55 90,62 C 88,58 86,52 84,48 Z" fill="#6d4c41"/>
+
+  <!-- Hair ribbon/bow -->
+  <ellipse cx="60" cy="15" rx="8" ry="5" fill="#f48fb1"/>
+  <circle cx="52" cy="15" r="4" fill="#f48fb1"/>
+  <circle cx="68" cy="15" r="4" fill="#f48fb1"/>
+  <circle cx="60" cy="15" r="3" fill="#e91e63"/>
+
+  <!-- Eyebrows -->
+  <path d="M 44,40 Q 47,38 51,40" stroke="#6d4c41" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 69,40 Q 72,38 76,40" stroke="#6d4c41" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Eyes (slightly bigger, more expressive) -->
+  <ellipse cx="48" cy="47" rx="4.5" ry="6" fill="#ffffff"/>
+  <circle cx="48" cy="48" r="3.5" fill="#5d4037"/>
+  <circle cx="49" cy="47" r="1.5" fill="#ffffff"/>
+
+  <ellipse cx="72" cy="47" rx="4.5" ry="6" fill="#ffffff"/>
+  <circle cx="72" cy="48" r="3.5" fill="#5d4037"/>
+  <circle cx="73" cy="47" r="1.5" fill="#ffffff"/>
+
+  <!-- Eyelashes -->
+  <path d="M 44,45 L 42,43" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 45,44 L 44,42" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 76,45 L 78,43" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 75,44 L 76,42" stroke="#5d4037" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Nose -->
+  <ellipse cx="60" cy="54" rx="2.5" ry="3.5" fill="#f5c6cb" opacity="0.6"/>
+
+  <!-- Smile (rosy cheeks) -->
+  <ellipse cx="45" cy="56" rx="6" ry="4" fill="#ffc1cc" opacity="0.5"/>
+  <ellipse cx="75" cy="56" rx="6" ry="4" fill="#ffc1cc" opacity="0.5"/>
+  <path d="M 50,59 Q 60,66 70,59" stroke="#e8a5aa" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+
+  <!-- Backpack (on side) -->
+  <rect x="75" y="102" width="16" height="20" fill="#9c27b0" rx="3"/>
+  <rect x="77" y="104" width="12" height="16" fill="#ba68c8"/>
+  <circle cx="83" cy="108" r="2" fill="#ce93d8"/>
+  <circle cx="83" cy="114" r="2" fill="#ce93d8"/>
 </svg>
