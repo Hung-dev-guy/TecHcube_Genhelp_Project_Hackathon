@@ -13,8 +13,8 @@ const CONFIG = {
     // Quiz Generation Settings
     QUIZ: {
         USE_AI_GENERATION: false, // Set to true to use AI-generated questions
-        DEFAULT_TOPIC: 'sex education and mental health for teenagers',
-        QUESTION_COUNT: 12,
+        DEFAULT_TOPIC: 'giáo dục giới tính cho thanh thiếu niên',
+        QUESTION_COUNT: 8, // Number of questions per game (randomized from 24 total)
         FALLBACK_TO_CURATED: true // Use curated questions if AI fails
     },
     

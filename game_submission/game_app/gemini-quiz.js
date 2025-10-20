@@ -281,7 +281,7 @@ Generate ${count} questions now:`;
     }
     
     /**
-     * Get fallback curated questions
+     * Get fallback curated questions (Sex Education - English)
      */
     getFallbackQuestions(count = 12) {
         const curatedQuestions = [
@@ -315,11 +315,11 @@ Generate ${count} questions now:`;
             answers: [
                 "Using strong perfume or body spray to cover body odor",
                 "Showering regularly, changing clothes often, and using deodorant if needed",
-                "Washing only your face because that’s where you sweat most",
+                "Washing only your face because that's where you sweat most",
                 "Avoiding showers to keep natural body oils"
             ],
             correct: 1,
-            explanation: "During puberty, your body produces more sweat and oil. Showering regularly, wearing clean clothes, and using deodorant when needed helps you stay fresh and comfortable. Covering odor with perfume or skipping showers doesn’t keep you truly clean or healthy."
+            explanation: "During puberty, your body produces more sweat and oil. Showering regularly, wearing clean clothes, and using deodorant when needed helps you stay fresh and comfortable. Covering odor with perfume or skipping showers doesn't keep you truly clean or healthy."
             },
             {
             id: 3,
@@ -382,10 +382,22 @@ Generate ${count} questions now:`;
                 explanation: "A healthy relationship is built on mutual respect, trust, and open communication."
             },
             {
-                id: 10,
+                id: 8,
+                question: "What is body autonomy?",
+                answers: [
+                    "You have the right to make decisions about your own body",
+                    "Others decide for you",
+                    "You must let others touch you",
+                    "Ignoring your health"
+                ],
+                correct: 0,
+                explanation: "Body autonomy means you have control over what happens to your body. No one can touch you without permission. You always have the right to say no."
+            },
+            {
+                id: 9,
                 question: "What does it mean to set boundaries in a friendship or relationship?",
                 answers: [
-                    "Telling people what they can’t do",
+                    "Telling people what they can't do",
                     "Defining what behavior makes you feel safe and respected",
                     "Ignoring others",
                     "Controlling others"
@@ -394,16 +406,160 @@ Generate ${count} questions now:`;
                 explanation: "Setting boundaries is a healthy way to express your comfort zone and build mutual respect."
             },
             {
-                id: 8,
-                question: "What is body autonomy?",
+                id: 10,
+                question: "How is HIV/AIDS transmitted?",
                 answers: [
-                    "Your right to make decisions about your own body",
-                    "Following what others say about your body",
-                    "Letting others touch you without permission",
-                    "Not caring about your health"
+                    "Unprotected sex, sharing needles, mother to child",
+                    "Handshakes, hugs, cheek kisses",
+                    "Sharing dishes or glasses",
+                    "Using the same toilet"
                 ],
                 correct: 0,
-                explanation: "Body autonomy means you have the right to decide what happens to your body. No one should touch you without your permission, and you can always say no."
+                explanation: "HIV is transmitted through blood, semen, vaginal fluids, and breast milk. It's NOT spread through casual contact like handshakes or sharing food. Condoms help prevent HIV transmission."
+            },
+            {
+                id: 11,
+                question: "What are the risks of teenage pregnancy?",
+                answers: [
+                    "High health risks for mother and baby, impacts education",
+                    "No problems at all",
+                    "Very safe",
+                    "Good for health"
+                ],
+                correct: 0,
+                explanation: "Teen pregnancy carries health risks (anemia, preeclampsia) and affects education and future opportunities. It's important to have contraceptive knowledge and medical support if needed."
+            },
+            {
+                id: 12,
+                question: "Where should you learn about sex education?",
+                answers: [
+                    "Parents, teachers, doctors, trusted medical resources",
+                    "Adult films",
+                    "Rumors from friends",
+                    "Unverified social media"
+                ],
+                correct: 0,
+                explanation: "Accurate sex education should come from trusted sources like parents, teachers, doctors, and medical books. Avoid rumors or misleading online content."
+            },
+            {
+                id: 13,
+                question: "What are wet dreams?",
+                answers: [
+                    "A natural occurrence in males during sleep",
+                    "A disease",
+                    "Something abnormal",
+                    "A sign of health problems"
+                ],
+                correct: 0,
+                explanation: "Wet dreams (nocturnal emissions) are normal for adolescent boys during puberty. There's no need to worry or feel embarrassed. It's the body's way of regulating hormones."
+            },
+            {
+                id: 14,
+                question: "When can a woman get pregnant?",
+                answers: [
+                    "During ovulation (usually mid-cycle)",
+                    "At any time",
+                    "Only during menstruation",
+                    "Only at night"
+                ],
+                correct: 0,
+                explanation: "Women are most fertile during ovulation (typically days 12-14 of a 28-day cycle). However, cycles vary, so contraception is needed if you're not ready for pregnancy."
+            },
+            {
+                id: 15,
+                question: "When should you talk to a doctor about reproductive health?",
+                answers: [
+                    "When you have questions, concerns, or unusual symptoms",
+                    "Never necessary",
+                    "Only after marriage",
+                    "Only after serious problems"
+                ],
+                correct: 0,
+                explanation: "Don't hesitate to talk to a doctor about reproductive health. Doctors are trained to help you professionally and confidentially. Early detection leads to better treatment."
+            },
+            {
+                id: 16,
+                question: "What are signs of an unhealthy relationship?",
+                answers: [
+                    "Control, violence, lack of respect",
+                    "Minor disagreements",
+                    "Needing personal space",
+                    "Having different interests"
+                ],
+                correct: 0,
+                explanation: "Warning signs include excessive control, violence (physical/verbal), extreme jealousy, isolating you from family/friends. If experiencing this, seek help immediately."
+            },
+            {
+                id: 17,
+                question: "Is masturbation harmful?",
+                answers: [
+                    "No, it's natural and normal",
+                    "Very dangerous",
+                    "Causes mental illness",
+                    "Stunts growth"
+                ],
+                correct: 0,
+                explanation: "Masturbation is natural, safe, and not harmful. It's a way to explore your own body. Claims about harmful effects are myths without scientific basis."
+            },
+            {
+                id: 18,
+                question: "What does the HPV vaccine do?",
+                answers: [
+                    "Prevents cervical cancer and HPV-related diseases",
+                    "Cures the flu",
+                    "Prevents pregnancy",
+                    "Increases height"
+                ],
+                correct: 0,
+                explanation: "The HPV vaccine prevents HPV virus - the main cause of cervical cancer, anal cancer, and genital warts. Most effective when given before becoming sexually active."
+            },
+            {
+                id: 19,
+                question: "What does safe sex include?",
+                answers: [
+                    "Using condoms, limiting partners, regular testing",
+                    "No protection needed",
+                    "Just trusting each other",
+                    "Washing after sex is enough"
+                ],
+                correct: 0,
+                explanation: "Safe sex includes: proper condom use, limiting partners, regular STI testing, open communication with partners. Trust is important but doesn't replace protection methods."
+            },
+            {
+                id: 20,
+                question: "What is family planning?",
+                answers: [
+                    "Planning when and how many children to have",
+                    "Only for married people",
+                    "Not allowed to have children",
+                    "Required to have children"
+                ],
+                correct: 0,
+                explanation: "Family planning is the right to decide the number, spacing, and timing of children based on your circumstances. It helps ensure mother and child health and family stability."
+            },
+            {
+                id: 21,
+                question: "Who can be a victim of sexual violence?",
+                answers: [
+                    "Anyone, regardless of gender, age, or clothing",
+                    "Only women",
+                    "Only people wearing revealing clothes",
+                    "Only people out at night"
+                ],
+                correct: 0,
+                explanation: "Sexual violence can happen to anyone. The fault ALWAYS lies with the perpetrator, NEVER the victim. Clothing and behavior are never excuses for violence."
+            },
+            {
+                id: 22,
+                question: "Do female condoms exist?",
+                answers: [
+                    "Yes, and they're as effective as male condoms",
+                    "They don't exist",
+                    "They're not effective",
+                    "Only for older people"
+                ],
+                correct: 0,
+                explanation: "Female condoms are effective contraception and STI prevention, allowing women to take control of protection. Can be inserted before sex and don't require male partner cooperation."
             }
         ];
 

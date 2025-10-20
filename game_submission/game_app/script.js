@@ -7,7 +7,11 @@ const gameState = {
     gameActive: false,
     questionUsed: new Set(),
     currentQuestion: null,
-    quizQuestions: [] // Will be loaded from AI or fallback
+    quizQuestions: [], // Will be loaded from AI or fallback
+    stepsRemaining: 0,
+    isMoving: false,
+    moveQueue: [],
+    visitedTiles: new Set() // Track visited tiles to avoid backtracking
 };
 
 // ===== LOAD QUIZ QUESTIONS =====
@@ -29,18 +33,33 @@ async function loadQuizQuestions() {
         console.log('🔄 Falling back to curated questions');
         gameState.quizQuestions = geminiQuizService.getFallbackQuestions(CONFIG.QUIZ.QUESTION_COUNT);
     }
+    
+    // Always ensure we have questions
+    if (!gameState.quizQuestions || gameState.quizQuestions.length === 0) {
+        console.warn('⚠️ No quiz questions loaded, loading fallback');
+        gameState.quizQuestions = geminiQuizService.getFallbackQuestions(12);
+    }
+    
+    console.log(`📚 Total questions loaded: ${gameState.quizQuestions.length}`);
 }
 
-// ===== MAZE LAYOUT (10x7 grid) =====
+// ===== MAZE LAYOUT (15x8 grid) =====
 // 0 = wall, 1 = path, 2 = quiz tile, 3 = goal
+// BEAUTIFUL SNAKE PATTERN - Clean zigzag path!
 const mazeLayout = [
-    [1, 1, 2, 0, 1, 0, 1, 2, 1, 1],
-    [0, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-    [1, 1, 0, 2, 0, 0, 2, 1, 1, 1],
-    [1, 0, 1, 1, 1, 1, 1, 0, 1, 0],
-    [2, 1, 1, 0, 2, 2, 1, 1, 1, 2],
-    [1, 1, 0, 1, 1, 1, 0, 1, 0, 1],
-    [1, 2, 1, 1, 1, 1, 1, 2, 1, 3]
+    // Row 0: Start → → → → → → → → → → → → → (to column 13)
+    [1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1],
+    // Row 1: Vertical connector at column 13
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+    // Row 2: ← ← ← ← ← ← ← ← ← ← ← ← ← (from column 13 to 1)
+    [1, 1, 1, 1, 2, 1, 1, 2, 1, 1, 2, 1, 1, 1, 1],
+    // Row 3: Vertical connector at column 1
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    // Row 6: ← ← ← ← ← ← ← ← ← ← ← ← ← (from column 13 to 1)
+    [1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2],
+    // Row 7: Down and → → → → → → → → → → → to GOAL
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [1, 1, 1, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 1, 3]
 ];
 
 // Note: Quiz questions are now loaded dynamically
@@ -194,13 +213,26 @@ document.getElementById('view-leaderboard-button').addEventListener('click', () 
 });
 
 // ===== NAME INPUT =====
-document.getElementById('start-game-button').addEventListener('click', () => {
+document.getElementById('start-game-button').addEventListener('click', async () => {
     const nameInput = document.getElementById('player-name-input');
     const name = nameInput.value.trim();
 
     if (name.length === 0) {
         alert('Please enter your name!');
         return;
+    }
+
+    // Ensure quiz questions are loaded
+    if (!gameState.quizQuestions || gameState.quizQuestions.length === 0) {
+        console.log('⏳ Loading quiz questions...');
+        const startButton = document.getElementById('start-game-button');
+        startButton.disabled = true;
+        startButton.textContent = 'Loading...';
+        
+        await loadQuizQuestions();
+        
+        startButton.disabled = false;
+        startButton.textContent = 'Start';
     }
 
     gameState.player.name = name;
@@ -220,6 +252,24 @@ document.getElementById('player-name-input').addEventListener('keypress', (e) =>
     }
 });
 
+// ===== IN-GAME NAVIGATION =====
+document.getElementById('view-leaderboard-ingame').addEventListener('click', () => {
+    if (confirm('Viewing leaderboard will pause the game. Continue?')) {
+        gameState.gameActive = false;
+        if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+        loadLeaderboard();
+        showScreen('leaderboard');
+    }
+});
+
+document.getElementById('back-to-menu-ingame').addEventListener('click', () => {
+    if (confirm('Are you sure you want to quit? Your progress will be lost.')) {
+        gameState.gameActive = false;
+        if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+        showScreen('menu');
+    }
+});
+
 // ===== GAME INITIALIZATION =====
 function startGame() {
     // Reset game state
@@ -228,6 +278,11 @@ function startGame() {
     gameState.player.score = 0;
     gameState.questionUsed = new Set();
     gameState.gameActive = true;
+    gameState.stepsRemaining = 0;
+    gameState.isMoving = false;
+    gameState.moveQueue = [];
+    gameState.visitedTiles = new Set();
+    gameState.visitedTiles.add('0,0'); // Mark starting position as visited
 
     // Reset timer
     gameState.timerStart = Date.now();
@@ -237,6 +292,7 @@ function startGame() {
     // Update UI
     document.getElementById('current-player-name').textContent = gameState.player.name;
     updateScore();
+    updateDiceUI();
     buildMaze();
     showScreen('game');
 }
@@ -283,8 +339,154 @@ function getTileElement(row, col) {
     return document.querySelector(`.tile[data-row="${row}"][data-col="${col}"]`);
 }
 
-// ===== PLAYER MOVEMENT =====
+// ===== DICE SYSTEM =====
+function updateDiceUI() {
+    const rollButton = document.getElementById('roll-dice-button');
+    const stepsDisplay = document.getElementById('steps-remaining');
+    
+    if (gameState.stepsRemaining > 0) {
+        stepsDisplay.textContent = `Steps remaining: ${gameState.stepsRemaining}`;
+        rollButton.disabled = true;
+    } else {
+        stepsDisplay.textContent = '';
+        rollButton.disabled = !gameState.gameActive;
+    }
+}
+
+function rollDice() {
+    if (!gameState.gameActive || gameState.stepsRemaining > 0 || gameState.isMoving) {
+        return;
+    }
+
+    // Roll the dice (1-6)
+    const diceValue = Math.floor(Math.random() * 6) + 1;
+    
+    // Update dice visual
+    const diceElement = document.getElementById('dice');
+    const diceResult = document.getElementById('dice-result');
+    
+    // Animate dice rolling
+    diceElement.classList.add('rolling');
+    sounds.move();
+    
+    // Show random numbers during animation
+    let animationCount = 0;
+    const animationInterval = setInterval(() => {
+        const randomNum = Math.floor(Math.random() * 6) + 1;
+        diceResult.textContent = randomNum;
+        diceElement.className = `dice dice-${randomNum}`;
+        animationCount++;
+        
+        if (animationCount >= 10) {
+            clearInterval(animationInterval);
+            // Show final result
+            diceResult.textContent = diceValue;
+            diceElement.className = `dice dice-${diceValue}`;
+            diceElement.classList.remove('rolling');
+            
+            // Set steps and start moving
+            gameState.stepsRemaining = diceValue;
+            updateDiceUI();
+            movePlayerAutomatically();
+        }
+    }, 50);
+}
+
+// Add dice roll button event listener
+document.getElementById('roll-dice-button').addEventListener('click', rollDice);
+
+// ===== AUTOMATIC MOVEMENT =====
+function movePlayerAutomatically() {
+    if (gameState.stepsRemaining <= 0 || !gameState.gameActive || gameState.isMoving) {
+        return;
+    }
+
+    gameState.isMoving = true;
+
+    // Find the next valid move (prefer unvisited tiles to follow the linear path)
+    const directions = [
+        { row: 0, col: 1, name: 'right' },  // Right (primary direction)
+        { row: 1, col: 0, name: 'down' },   // Down
+        { row: 0, col: -1, name: 'left' },  // Left
+        { row: -1, col: 0, name: 'up' }     // Up
+    ];
+
+    let moved = false;
+    let bestMove = null;
+    let bestMoveIsUnvisited = false;
+
+    // First, try to find an unvisited valid tile
+    for (const dir of directions) {
+        const newRow = gameState.player.row + dir.row;
+        const newCol = gameState.player.col + dir.col;
+        const tileKey = `${newRow},${newCol}`;
+
+        // Check if valid move
+        if (newRow >= 0 && newRow < mazeLayout.length &&
+            newCol >= 0 && newCol < mazeLayout[0].length &&
+            mazeLayout[newRow][newCol] !== 0) {
+            
+            const isUnvisited = !gameState.visitedTiles.has(tileKey);
+            
+            // Prefer unvisited tiles
+            if (!bestMove || (isUnvisited && !bestMoveIsUnvisited)) {
+                bestMove = { row: newRow, col: newCol, tileKey: tileKey };
+                bestMoveIsUnvisited = isUnvisited;
+            }
+        }
+    }
+
+    if (bestMove) {
+        // Move player to best tile
+        gameState.player.row = bestMove.row;
+        gameState.player.col = bestMove.col;
+        gameState.visitedTiles.add(bestMove.tileKey);
+        gameState.stepsRemaining--;
+        updateDiceUI();
+        sounds.move();
+        renderPlayer();
+        moved = true;
+
+        // Check tile type
+        const tileType = mazeLayout[bestMove.row][bestMove.col];
+        
+        // Add delay before continuing
+        setTimeout(() => {
+            gameState.isMoving = false;
+            
+            if (tileType === 2) {
+                // Quiz tile - stop moving and show quiz
+                gameState.stepsRemaining = 0;
+                updateDiceUI();
+                setTimeout(() => showQuiz(), 300); // Small delay before showing quiz
+            } else if (tileType === 3) {
+                // Goal tile - player wins!
+                gameState.stepsRemaining = 0;
+                updateDiceUI();
+                endGame();
+            } else if (gameState.stepsRemaining > 0) {
+                // Continue moving after delay
+                setTimeout(() => movePlayerAutomatically(), 200);
+            } else {
+                updateDiceUI();
+            }
+        }, 400); // Increased delay to see each movement
+    }
+
+    if (!moved) {
+        // No valid move - stop
+        gameState.stepsRemaining = 0;
+        gameState.isMoving = false;
+        updateDiceUI();
+    }
+}
+
+// ===== PLAYER MOVEMENT (DISABLED - Now using dice) =====
 document.addEventListener('keydown', (e) => {
+    // Keyboard controls disabled - using dice roll instead
+    return;
+    
+    /* Original keyboard code commented out
     if (!gameState.gameActive || gameState.currentScreen !== 'game') return;
 
     const key = e.key.toLowerCase();
@@ -294,45 +496,23 @@ document.addEventListener('keydown', (e) => {
     else if (key === 's' || key === 'arrowdown') movePlayer(1, 0);
     else if (key === 'a' || key === 'arrowleft') movePlayer(0, -1);
     else if (key === 'd' || key === 'arrowright') movePlayer(0, 1);
+    */
 });
-
-function movePlayer(rowDelta, colDelta) {
-    const newRow = gameState.player.row + rowDelta;
-    const newCol = gameState.player.col + colDelta;
-
-    // Check bounds
-    if (newRow < 0 || newRow >= mazeLayout.length ||
-        newCol < 0 || newCol >= mazeLayout[0].length) {
-        return;
-    }
-
-    // Check if tile is walkable
-    const tileType = mazeLayout[newRow][newCol];
-    if (tileType === 0) return; // Wall
-
-    // Move player
-    gameState.player.row = newRow;
-    gameState.player.col = newCol;
-    sounds.move();
-    renderPlayer();
-
-    // Check tile type
-    if (tileType === 2) {
-        // Quiz tile
-        showQuiz();
-    } else if (tileType === 3) {
-        // Goal tile - player wins!
-        endGame();
-    }
-}
 
 // ===== QUIZ SYSTEM =====
 function showQuiz() {
     gameState.gameActive = false;
 
+    // Check if quiz questions are loaded
+    if (!gameState.quizQuestions || gameState.quizQuestions.length === 0) {
+        console.error('No quiz questions available!');
+        gameState.gameActive = true;
+        return;
+    }
+
     // Get random unused question
     let questionIndex;
-    const availableQuestions = quizQuestions.filter((_, i) => !gameState.questionUsed.has(i));
+    const availableQuestions = gameState.quizQuestions.filter((_, i) => !gameState.questionUsed.has(i));
 
     if (availableQuestions.length === 0) {
         // Reset if all questions used - player has seen all 12 questions!
@@ -348,7 +528,7 @@ function showQuiz() {
     const question = gameState.quizQuestions[questionIndex];
     gameState.currentQuestion = question; // Store current question
 
-    console.log(`Question ${gameState.questionUsed.size}/12: "${question.question}"`)
+    console.log(`Question ${gameState.questionUsed.size}/${gameState.quizQuestions.length}: "${question.question}"`)
 
     // Display quiz
     document.getElementById('question-text').textContent = question.question;
@@ -380,55 +560,36 @@ function checkAnswer(selected, correct, explanation) {
     });
 
     if (selected === correct) {
-        // Correct answer
-        feedback.innerHTML = `<strong>✓ Correct!</strong><br>${explanation}<br><em>Moving forward...</em>`;
+        // Correct answer: +10 points
+        feedback.innerHTML = `<strong>✓ Correct! +10 points</strong><br>${explanation}<br><em>Great job!</em>`;
         feedback.className = 'feedback show correct';
-        gameState.player.score++;
+        gameState.player.score += 10;
         updateScore();
         sounds.correct();
 
         setTimeout(() => {
-            movePlayerAfterQuiz(1); // Move forward
+            closeQuizAndContinue();
         }, 2500);
     } else {
-        // Wrong answer
-        feedback.innerHTML = `<strong>✗ Wrong!</strong><br>${explanation}<br><em>Moving back...</em>`;
+        // Wrong answer: -5 points
+        feedback.innerHTML = `<strong>✗ Wrong! -5 points</strong><br>${explanation}<br><em>Better luck next time!</em>`;
         feedback.className = 'feedback show wrong';
+        gameState.player.score -= 5;
+        updateScore();
         sounds.wrong();
 
         setTimeout(() => {
-            movePlayerAfterQuiz(-1); // Move back
+            closeQuizAndContinue();
         }, 2500);
     }
 }
 
-function movePlayerAfterQuiz(direction) {
-    // Try to move in the direction toward/away from goal
-    if (direction === 1) {
-        // Try right, then down
-        if (gameState.player.col + 1 < mazeLayout[0].length &&
-            mazeLayout[gameState.player.row][gameState.player.col + 1] !== 0) {
-            gameState.player.col++;
-        } else if (gameState.player.row + 1 < mazeLayout.length &&
-                   mazeLayout[gameState.player.row + 1][gameState.player.col] !== 0) {
-            gameState.player.row++;
-        }
-    } else {
-        // Try left, then up
-        if (gameState.player.col - 1 >= 0 &&
-            mazeLayout[gameState.player.row][gameState.player.col - 1] !== 0) {
-            gameState.player.col--;
-        } else if (gameState.player.row - 1 >= 0 &&
-                   mazeLayout[gameState.player.row - 1][gameState.player.col] !== 0) {
-            gameState.player.row--;
-        }
-    }
-
-    renderPlayer();
+function closeQuizAndContinue() {
     document.getElementById('quiz-modal').classList.remove('active');
     gameState.gameActive = true;
-
-    // Check if landed on goal
+    updateDiceUI();
+    
+    // Check if landed on goal after quiz
     if (mazeLayout[gameState.player.row][gameState.player.col] === 3) {
         endGame();
     }
@@ -448,6 +609,50 @@ function updateScore() {
     document.getElementById('player-score').textContent = `Score: ${gameState.player.score}`;
 }
 
+// ===== ACHIEVEMENT SYSTEM =====
+function getAchievementByScore(score) {
+    // Define achievement tiers based on score
+    // Perfect score would be 9 quizzes × 10 points = 90 points
+    // (Assuming player answers all correctly)
+    
+    if (score >= 80) {
+        return {
+            title: "🏆 Sexual Health Expert",
+            emoji: "🌟",
+            message: "Outstanding! You have excellent knowledge of sexual health.",
+            advice: "Your comprehensive understanding of sexual health is impressive! Continue being a reliable source of information for your peers. Consider volunteering for peer education programs to share your knowledge. Remember to keep learning as health information evolves."
+        };
+    } else if (score >= 60) {
+        return {
+            title: "🥇 Health Champion",
+            emoji: "💪",
+            message: "Great job! You have strong sexual health knowledge.",
+            advice: "You're doing great! You have a solid foundation in sexual health education. To further improve, consider reading more about topics you found challenging. Stay curious and don't hesitate to ask healthcare professionals questions. Keep up the excellent work!"
+        };
+    } else if (score >= 40) {
+        return {
+            title: "🥈 Health Learner",
+            emoji: "📚",
+            message: "Good effort! You're building your sexual health knowledge.",
+            advice: "You're on the right track! Continue learning about sexual health through trusted resources like Planned Parenthood, school counselors, or healthcare providers. Review the education section for more information. Remember, learning is a journey, and you're making progress!"
+        };
+    } else if (score >= 20) {
+        return {
+            title: "🥉 Health Beginner",
+            emoji: "🌱",
+            message: "Keep learning! Sexual health education is important.",
+            advice: "Don't worry - everyone starts somewhere! Sexual health is an important topic to understand. We recommend reviewing the education materials in the game and talking to trusted adults like parents, teachers, or doctors. Play again to reinforce your learning!"
+        };
+    } else {
+        return {
+            title: "🎯 Health Explorer",
+            emoji: "🔍",
+            message: "Every expert was once a beginner. Keep exploring!",
+            advice: "Thank you for taking the first step in learning about sexual health! This is a crucial topic that affects your wellbeing. Please take time to read through the educational resources, talk to healthcare professionals, and don't be afraid to ask questions. Knowledge is power - keep learning!"
+        };
+    }
+}
+
 // ===== GAME END =====
 function endGame() {
     gameState.gameActive = false;
@@ -461,14 +666,33 @@ function endGame() {
     const seconds = elapsed % 60;
     const timeString = `${minutes}:${seconds.toString().padStart(2, '0')}`;
 
-    // Calculate final score: correctAnswers * 100 - timeInSeconds
-    const finalScore = (gameState.player.score * 100) - elapsed;
+    // Get achievement based on score
+    const achievement = getAchievementByScore(gameState.player.score);
+
+    // Calculate final score: score points × 10 - timeInSeconds
+    const finalScore = (gameState.player.score * 10) - elapsed;
 
     // Update result screen
     document.getElementById('result-player-name').textContent = gameState.player.name;
     document.getElementById('final-score').textContent = gameState.player.score;
     document.getElementById('final-time').textContent = timeString;
     document.getElementById('total-score').textContent = finalScore;
+
+    // Update achievement display
+    const achievementSection = document.getElementById('achievement-section');
+    if (achievementSection) {
+        achievementSection.innerHTML = `
+            <div class="achievement-card">
+                <div class="achievement-emoji">${achievement.emoji}</div>
+                <h3 class="achievement-title">${achievement.title}</h3>
+                <p class="achievement-message">${achievement.message}</p>
+                <div class="achievement-advice">
+                    <strong>💡 Advice:</strong>
+                    <p>${achievement.advice}</p>
+                </div>
+            </div>
+        `;
+    }
 
     // Save to leaderboard
     const isNewRecord = saveScore({
@@ -546,6 +770,38 @@ document.getElementById('clear-leaderboard-button').addEventListener('click', ()
     if (confirm('Are you sure you want to clear the leaderboard? This cannot be undone.')) {
         localStorage.removeItem('mazeLeaderboard');
         loadLeaderboard();
+    }
+});
+
+// ===== INFO BADGES FUNCTIONALITY =====
+// Education badge - Show sexual health education
+document.getElementById('education-badge').addEventListener('click', () => {
+    document.getElementById('education-modal').classList.add('active');
+});
+
+// Close education modal
+document.getElementById('close-education').addEventListener('click', () => {
+    document.getElementById('education-modal').classList.remove('active');
+});
+
+document.getElementById('close-education-btn').addEventListener('click', () => {
+    document.getElementById('education-modal').classList.remove('active');
+});
+
+// Leaderboard badge - Show leaderboard
+document.getElementById('leaderboard-badge').addEventListener('click', () => {
+    showScreen('leaderboard');
+});
+
+// Progress badge - Show info alert
+document.getElementById('progress-badge').addEventListener('click', () => {
+    alert('🎯 Track Your Progress\n\nYour scores are automatically saved to the leaderboard!\n\nEach game you play is recorded with:\n• Your score (based on correct answers)\n• Completion time\n• Date played\n\nTry to beat your best score and climb to the top!');
+});
+
+// Close education modal when clicking outside
+document.getElementById('education-modal').addEventListener('click', (e) => {
+    if (e.target.id === 'education-modal') {
+        document.getElementById('education-modal').classList.remove('active');
     }
 });
 

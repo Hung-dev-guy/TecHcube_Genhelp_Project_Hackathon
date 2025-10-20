@@ -47,7 +47,7 @@ Sexual health education for teenagers (ages 13-18) focused on:
 ### Gameplay Mechanics
 1. **Maze Navigation**: Move through a 10x7 grid maze.
 2. **Quiz Encounters**: Step on quiz tiles to trigger a question from the AI.
-3. **Reward/Penalty System**: 
+3. **Reward/Penalty System**:
    - Correct answers → Move forward.
    - Wrong answers → Move back.
 4. **Goal**: Reach the trophy tile as fast as possible.
