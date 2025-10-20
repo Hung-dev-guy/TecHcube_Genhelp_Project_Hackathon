@@ -281,93 +281,93 @@ Generate ${count} questions now:`;
     }
     
     /**
-     * Get fallback curated questions
+     * Get fallback curated questions (Sex Education - English)
      */
     getFallbackQuestions(count = 12) {
         const curatedQuestions = [
             {
                 id: 0,
-                question: "What is the best way to prevent pregnancy?",
+                question: "What is the most effective method of contraception?",
                 answers: [
-                    "Abstinence or contraception",
-                    "Crossing fingers",
-                    "Drinking coffee",
-                    "Eating vegetables"
+                    "Using condoms or birth control pills correctly",
+                    "Having sex on 'safe days' only",
+                    "Drinking lots of water after sex",
+                    "Washing after sex"
                 ],
                 correct: 0,
-                explanation: "Abstinence (not having sex) is 100% effective. If sexually active, contraception like condoms or birth control pills are highly effective when used correctly."
+                explanation: "When used correctly, condoms and birth control pills are over 95% effective. The 'safe days' method is unreliable because menstrual cycles can vary."
             },
             {
                 id: 1,
                 question: "What does STI stand for?",
                 answers: [
                     "Sexually Transmitted Infection",
-                    "Super Tight Infection",
-                    "Simple Test Info",
-                    "Safe Time Indicator"
+                    "A type of vitamin",
+                    "A contraceptive method",
+                    "An antibiotic"
                 ],
                 correct: 0,
-                explanation: "STI stands for Sexually Transmitted Infection - infections passed through sexual contact that can be prevented with protection and regular testing."
+                explanation: "STIs are infections passed through sexual contact, including HIV, syphilis, gonorrhea, and HPV. They can be prevented by using condoms and regular health checkups."
             },
             {
                 id: 2,
-                question: "What is consent in a relationship?",
+                question: "When does puberty typically begin?",
                 answers: [
-                    "Clear, voluntary agreement by all parties",
-                    "Silence means yes",
-                    "Maybe means yes",
-                    "Only needed once"
+                    "Between ages 8-13 (varies by person)",
+                    "After age 18",
+                    "Only after marriage",
+                    "After age 25"
                 ],
                 correct: 0,
-                explanation: "Consent is a clear, enthusiastic 'yes' that can be withdrawn at any time. It must be given freely without pressure, and silence or maybe never means yes."
+                explanation: "Puberty usually starts between 8-13 for girls and 9-14 for boys. It's a natural process with physical and emotional changes. Everyone develops at their own pace."
             },
             {
                 id: 3,
-                question: "At what age is it appropriate to learn about puberty?",
+                question: "What does sexual consent mean?",
                 answers: [
-                    "Before it starts (8-10 years)",
-                    "After 18",
-                    "Never",
-                    "Only in college"
+                    "Both people freely and clearly agree",
+                    "Silence means yes",
+                    "Only one person needs to agree",
+                    "You can't change your mind once you agree"
                 ],
                 correct: 0,
-                explanation: "Learning about puberty before it happens (typically ages 8-10) helps young people understand and cope with the physical and emotional changes in their bodies."
+                explanation: "Consent must be clear, voluntary, and can be withdrawn at any time. Silence is NOT consent. Both people have the right to say no at any time without explanation."
             },
             {
                 id: 4,
-                question: "What is the most effective way to prevent STIs?",
+                question: "What should you do if you feel pressured into sexual activity?",
                 answers: [
-                    "Using condoms correctly and consistently",
-                    "Wishful thinking",
-                    "Taking vitamins",
-                    "Drinking lots of water"
+                    "Say 'no' clearly and talk to a trusted adult",
+                    "Stay silent and go along with it",
+                    "Feel guilty",
+                    "Keep it secret"
                 ],
                 correct: 0,
-                explanation: "Condoms, when used correctly every time, significantly reduce the risk of most STIs. Abstinence is the only 100% effective method."
+                explanation: "You always have the right to refuse any sexual activity. Say 'no' clearly, leave the situation, and tell a trusted adult. It's never your fault for saying no."
             },
             {
                 id: 5,
-                question: "Should both partners discuss contraception?",
+                question: "What do condoms protect against?",
                 answers: [
-                    "Yes, it's a shared responsibility",
-                    "No, only one person's choice",
-                    "Only if married",
-                    "Only after pregnancy"
+                    "Pregnancy and STIs",
+                    "Only pregnancy",
+                    "Only STIs",
+                    "Nothing"
                 ],
                 correct: 0,
-                explanation: "Both partners should discuss and agree on contraception methods as it affects both people equally and promotes healthy communication."
+                explanation: "When used correctly, condoms prevent pregnancy AND reduce the risk of STIs including HIV. They provide dual protection."
             },
             {
                 id: 6,
-                question: "What should you do if someone pressures you into sexual activity?",
+                question: "What is menstruation?",
                 answers: [
-                    "Say no firmly and remove yourself from the situation",
-                    "Give in to avoid conflict",
-                    "Stay silent",
-                    "Feel guilty about saying no"
+                    "A natural monthly cycle in the female body",
+                    "A disease",
+                    "Something to be ashamed of",
+                    "Only happens during pregnancy"
                 ],
                 correct: 0,
-                explanation: "You always have the right to say no. Leave the situation immediately and talk to a trusted adult. Never feel guilty for protecting yourself."
+                explanation: "Menstruation is a natural, healthy process that typically occurs monthly from puberty to menopause. There's nothing shameful about it, and proper hygiene is important."
             },
             {
                 id: 7,
@@ -375,63 +375,239 @@ Generate ${count} questions now:`;
                 answers: [
                     "Respect, trust, and open communication",
                     "Control and jealousy",
-                    "Always agreeing with each other",
-                    "Keeping secrets from each other"
+                    "Keeping secrets from each other",
+                    "Always agreeing with everything"
                 ],
                 correct: 0,
-                explanation: "Healthy relationships require mutual respect, trust, honest communication, and supporting each other's independence and personal growth."
+                explanation: "Healthy relationships require mutual respect, trust, honest communication, and support for each other's growth. Excessive jealousy and control are warning signs."
             },
             {
                 id: 8,
-                question: "What is a sign of good mental wellbeing?",
+                question: "How should you maintain good genital hygiene?",
                 answers: [
-                    "Being able to cope with normal life stress",
-                    "Never feeling sad or stressed",
-                    "Avoiding all difficult situations",
-                    "Not needing friends or family"
+                    "Wash daily with mild soap",
+                    "Use strong perfumes",
+                    "Don't need to wash",
+                    "Use harsh chemicals"
                 ],
                 correct: 0,
-                explanation: "Good mental health means you can handle life's challenges effectively, not that you never face difficulties. Everyone experiences stress and sadness sometimes."
+                explanation: "Good hygiene includes daily washing with mild soap and wearing clean underwear. Avoid harsh chemicals that can cause irritation. The genital area has its own self-cleaning system."
             },
             {
                 id: 9,
-                question: "Who should you talk to if you're struggling with mental health?",
+                question: "What is peer pressure about sex?",
                 answers: [
-                    "Trusted adult, counselor, or mental health professional",
-                    "Nobody - handle it alone",
-                    "Only strangers online",
-                    "Keep it secret always"
-                ],
-                correct: 0,
-                explanation: "Talking to trusted people and professionals is important. Mental health struggles are common and treatable - you don't have to face them alone."
-            },
-            {
-                id: 10,
-                question: "What is peer pressure?",
-                answers: [
-                    "When friends influence you to do something you're unsure about",
-                    "When teachers give homework",
+                    "When friends pressure you to do things you're not ready for",
+                    "When teachers assign homework",
                     "When parents set rules",
                     "A type of exercise"
                 ],
                 correct: 0,
-                explanation: "Peer pressure is when friends or classmates try to influence your decisions. It's okay to say no to things you're uncomfortable with, even if others are doing it."
+                explanation: "Peer pressure is when others try to convince you to do something you're not ready for or don't want. You have the right to say 'no' to anything that makes you uncomfortable."
+            },
+            {
+                id: 10,
+                question: "What does body autonomy mean?",
+                answers: [
+                    "You have the right to make decisions about your own body",
+                    "Others decide for you",
+                    "You must let others touch you",
+                    "Ignoring your health"
+                ],
+                correct: 0,
+                explanation: "Body autonomy means you have control over what happens to your body. No one can touch you without permission. You always have the right to say no."
             },
             {
                 id: 11,
-                question: "What is body autonomy?",
+                question: "How is HIV/AIDS transmitted?",
                 answers: [
-                    "Your right to make decisions about your own body",
-                    "Following what others say about your body",
-                    "Letting others touch you without permission",
-                    "Not caring about your health"
+                    "Unprotected sex, sharing needles, mother to child",
+                    "Handshakes, hugs, cheek kisses",
+                    "Sharing dishes or glasses",
+                    "Using the same toilet"
                 ],
                 correct: 0,
-                explanation: "Body autonomy means you have the right to decide what happens to your body. No one should touch you without your permission, and you can always say no."
+                explanation: "HIV is transmitted through blood, semen, vaginal fluids, and breast milk. It's NOT spread through casual contact like handshakes or sharing food. Condoms help prevent HIV transmission."
+            },
+            {
+                id: 12,
+                question: "What are the risks of teenage pregnancy?",
+                answers: [
+                    "High health risks for mother and baby, impacts education",
+                    "No problems at all",
+                    "Very safe",
+                    "Good for health"
+                ],
+                correct: 0,
+                explanation: "Teen pregnancy carries health risks (anemia, preeclampsia) and affects education and future opportunities. It's important to have contraceptive knowledge and medical support if needed."
+            },
+            {
+                id: 13,
+                question: "Where should you learn about sex education?",
+                answers: [
+                    "Parents, teachers, doctors, trusted medical resources",
+                    "Adult films",
+                    "Rumors from friends",
+                    "Unverified social media"
+                ],
+                correct: 0,
+                explanation: "Accurate sex education should come from trusted sources like parents, teachers, doctors, and medical books. Avoid rumors or misleading online content."
+            },
+            {
+                id: 14,
+                question: "What are wet dreams?",
+                answers: [
+                    "A natural occurrence in males during sleep",
+                    "A disease",
+                    "Something abnormal",
+                    "A sign of health problems"
+                ],
+                correct: 0,
+                explanation: "Wet dreams (nocturnal emissions) are normal for adolescent boys during puberty. There's no need to worry or feel embarrassed. It's the body's way of regulating hormones."
+            },
+            {
+                id: 15,
+                question: "When can a woman get pregnant?",
+                answers: [
+                    "During ovulation (usually mid-cycle)",
+                    "At any time",
+                    "Only during menstruation",
+                    "Only at night"
+                ],
+                correct: 0,
+                explanation: "Women are most fertile during ovulation (typically days 12-14 of a 28-day cycle). However, cycles vary, so contraception is needed if you're not ready for pregnancy."
+            },
+            {
+                id: 16,
+                question: "When should you talk to a doctor about reproductive health?",
+                answers: [
+                    "When you have questions, concerns, or unusual symptoms",
+                    "Never necessary",
+                    "Only after marriage",
+                    "Only after serious problems"
+                ],
+                correct: 0,
+                explanation: "Don't hesitate to talk to a doctor about reproductive health. Doctors are trained to help you professionally and confidentially. Early detection leads to better treatment."
+            },
+            {
+                id: 17,
+                question: "What are signs of an unhealthy relationship?",
+                answers: [
+                    "Control, violence, lack of respect",
+                    "Minor disagreements",
+                    "Needing personal space",
+                    "Having different interests"
+                ],
+                correct: 0,
+                explanation: "Warning signs include excessive control, violence (physical/verbal), extreme jealousy, isolating you from family/friends. If experiencing this, seek help immediately."
+            },
+            {
+                id: 18,
+                question: "Is masturbation harmful?",
+                answers: [
+                    "No, it's natural and normal",
+                    "Very dangerous",
+                    "Causes mental illness",
+                    "Stunts growth"
+                ],
+                correct: 0,
+                explanation: "Masturbation is natural, safe, and not harmful. It's a way to explore your own body. Claims about harmful effects are myths without scientific basis."
+            },
+            {
+                id: 19,
+                question: "What does the HPV vaccine do?",
+                answers: [
+                    "Prevents cervical cancer and HPV-related diseases",
+                    "Cures the flu",
+                    "Prevents pregnancy",
+                    "Increases height"
+                ],
+                correct: 0,
+                explanation: "The HPV vaccine prevents HPV virus - the main cause of cervical cancer, anal cancer, and genital warts. Most effective when given before becoming sexually active."
+            },
+            {
+                id: 20,
+                question: "What does safe sex include?",
+                answers: [
+                    "Using condoms, limiting partners, regular testing",
+                    "No protection needed",
+                    "Just trusting each other",
+                    "Washing after sex is enough"
+                ],
+                correct: 0,
+                explanation: "Safe sex includes: proper condom use, limiting partners, regular STI testing, open communication with partners. Trust is important but doesn't replace protection methods."
+            },
+            {
+                id: 21,
+                question: "What is family planning?",
+                answers: [
+                    "Planning when and how many children to have",
+                    "Only for married people",
+                    "Not allowed to have children",
+                    "Required to have children"
+                ],
+                correct: 0,
+                explanation: "Family planning is the right to decide the number, spacing, and timing of children based on your circumstances. It helps ensure mother and child health and family stability."
+            },
+            {
+                id: 22,
+                question: "Who can be a victim of sexual violence?",
+                answers: [
+                    "Anyone, regardless of gender, age, or clothing",
+                    "Only women",
+                    "Only people wearing revealing clothes",
+                    "Only people out at night"
+                ],
+                correct: 0,
+                explanation: "Sexual violence can happen to anyone. The fault ALWAYS lies with the perpetrator, NEVER the victim. Clothing and behavior are never excuses for violence."
+            },
+            {
+                id: 23,
+                question: "Do female condoms exist?",
+                answers: [
+                    "Yes, and they're as effective as male condoms",
+                    "They don't exist",
+                    "They're not effective",
+                    "Only for older people"
+                ],
+                correct: 0,
+                explanation: "Female condoms are effective contraception and STI prevention, allowing women to take control of protection. Can be inserted before sex and don't require male partner cooperation."
             }
         ];
         
-        return curatedQuestions.slice(0, Math.min(count, curatedQuestions.length));
+        // Shuffle answers for each question to randomize correct answer position
+        const questionsWithShuffledAnswers = curatedQuestions.map(q => {
+            return this.shuffleAnswers(q);
+        });
+        
+        // Randomize question order and return requested number
+        const shuffled = questionsWithShuffledAnswers.sort(() => Math.random() - 0.5);
+        return shuffled.slice(0, Math.min(count, shuffled.length));
+    }
+    
+    /**
+     * Shuffle answers and update correct index
+     */
+    shuffleAnswers(question) {
+        const q = { ...question };
+        const correctAnswer = q.answers[q.correct];
+        
+        // Create array of answer indices
+        const indices = [0, 1, 2, 3];
+        
+        // Fisher-Yates shuffle
+        for (let i = indices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [indices[i], indices[j]] = [indices[j], indices[i]];
+        }
+        
+        // Reorder answers according to shuffled indices
+        q.answers = indices.map(i => question.answers[i]);
+        
+        // Find new position of correct answer
+        q.correct = q.answers.indexOf(correctAnswer);
+        
+        return q;
     }
 }
 
